@@ -46,6 +46,7 @@ public @interface MontantComptable {
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {
+        
         /** List des {@link MontantComptable} */
         MontantComptable[] value();
     }

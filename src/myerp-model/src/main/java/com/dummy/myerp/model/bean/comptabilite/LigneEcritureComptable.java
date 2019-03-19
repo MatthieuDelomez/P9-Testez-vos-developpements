@@ -12,7 +12,9 @@ import com.dummy.myerp.model.validation.constraint.MontantComptable;
  */
 public class LigneEcritureComptable {
 
+    
     // ==================== Attributs ====================
+    
     /** Compte Comptable */
     @NotNull
     private CompteComptable compteComptable;
@@ -31,10 +33,12 @@ public class LigneEcritureComptable {
 
 
     // ==================== Constructeurs ====================
+    
     /**
      * Instantiates a new Ligne ecriture comptable.
      */
     public LigneEcritureComptable() {
+        
     }
 
     /**
@@ -45,53 +49,68 @@ public class LigneEcritureComptable {
      * @param pDebit the debit
      * @param pCredit the credit
      */
-    public LigneEcritureComptable(CompteComptable pCompteComptable, String pLibelle,
-                                  BigDecimal pDebit, BigDecimal pCredit) {
+    public LigneEcritureComptable(CompteComptable pCompteComptable, String pLibelle,  BigDecimal pDebit, BigDecimal pCredit) {
+        
         compteComptable = pCompteComptable;
         libelle = pLibelle;
         debit = pDebit;
         credit = pCredit;
+        
     }
 
 
     // ==================== Getters/Setters ====================
+    
     public CompteComptable getCompteComptable() {
         return compteComptable;
     }
+    
     public void setCompteComptable(CompteComptable pCompteComptable) {
         compteComptable = pCompteComptable;
     }
+    
     public String getLibelle() {
         return libelle;
     }
+    
     public void setLibelle(String pLibelle) {
         libelle = pLibelle;
     }
+    
     public BigDecimal getDebit() {
         return debit;
     }
+    
     public void setDebit(BigDecimal pDebit) {
         debit = pDebit;
     }
+    
     public BigDecimal getCredit() {
         return credit;
     }
+    
     public void setCredit(BigDecimal pCredit) {
         credit = pCredit;
     }
 
 
     // ==================== Méthodes ====================
+    
     @Override
     public String toString() {
+        
         final StringBuilder vStB = new StringBuilder(this.getClass().getSimpleName());
         final String vSEP = ", ";
+        
         vStB.append("{")
-            .append("compteComptable=").append(compteComptable)
-            .append(vSEP).append("libelle='").append(libelle).append('\'')
-            .append(vSEP).append("debit=").append(debit)
-            .append(vSEP).append("credit=").append(credit)
-            .append("}");
+                 .append("compteComptable=").append(compteComptable)
+                 .append(vSEP).append("libelle='").append(libelle).append('\'')
+                 .append(vSEP).append("debit=").append(debit)
+                 .append(vSEP).append("credit=").append(credit)
+                 .append("}");
+        
         return vStB.toString();
-    }
-}
+    
+        }
+
+        }

@@ -11,7 +11,11 @@ import javax.validation.constraints.Size;
  * Bean représentant un Compte Comptable
  */
 public class CompteComptable {
+    
+    
+    
     // ==================== Attributs ====================
+    
     /** The Numero. */
     @NotNull
     private Integer numero;
@@ -23,6 +27,7 @@ public class CompteComptable {
 
 
     // ==================== Constructeurs ====================
+    
     /**
      * Instantiates a new Compte comptable.
      */
@@ -51,31 +56,40 @@ public class CompteComptable {
 
 
     // ==================== Getters/Setters ====================
+    
     public Integer getNumero() {
         return numero;
     }
+    
     public void setNumero(Integer pNumero) {
         numero = pNumero;
     }
+    
     public String getLibelle() {
         return libelle;
     }
+    
     public void setLibelle(String pLibelle) {
         libelle = pLibelle;
     }
 
 
     // ==================== Méthodes ====================
+    
     @Override
     public String toString() {
+        
         final StringBuilder vStB = new StringBuilder(this.getClass().getSimpleName());
         final String vSEP = ", ";
+        
         vStB.append("{")
-            .append("numero=").append(numero)
-            .append(vSEP).append("libelle='").append(libelle).append('\'')
-            .append("}");
+                 .append("numero=").append(numero)
+                 .append(vSEP).append("libelle='").append(libelle).append('\'')
+                 .append("}");
+        
         return vStB.toString();
-    }
+        
+        }
 
 
     // ==================== Méthodes STATIC ====================
@@ -87,13 +101,23 @@ public class CompteComptable {
      * @return {@link CompteComptable} ou {@code null}
      */
     public static CompteComptable getByNumero(List<? extends CompteComptable> pList, Integer pNumero) {
-        CompteComptable vRetour = null;
-        for (CompteComptable vBean : pList) {
-            if (vBean != null && Objects.equals(vBean.getNumero(), pNumero)) {
-                vRetour = vBean;
-                break;
-            }
-        }
-        return vRetour;
-    }
-}
+        
+           CompteComptable vRetour = null;
+           
+           for (CompteComptable vBean : pList) {
+               
+           if (vBean != null && Objects.equals(vBean.getNumero(), pNumero)) {
+             
+           vRetour = vBean;
+                
+           break;
+           
+           }
+        
+           }
+    
+           return vRetour;
+    
+           }
+     
+           }
