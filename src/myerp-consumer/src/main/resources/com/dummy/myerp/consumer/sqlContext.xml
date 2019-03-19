@@ -8,6 +8,8 @@
 
 
     <!-- ========== ComptabiliteDaoImpl ========== -->
+    
+    
     <bean id="ComptabiliteDaoImpl" class="com.dummy.myerp.consumer.dao.impl.db.dao.ComptabiliteDaoImpl"
           factory-method="getInstance">
         <property name="SQLgetListCompteComptable">
@@ -15,28 +17,38 @@
                 SELECT * FROM myerp.compte_comptable
             </value>
         </property>
+        
+        
         <property name="SQLgetListJournalComptable">
             <value>
                 SELECT * FROM myerp.journal_comptable
             </value>
         </property>
+        
+        
         <property name="SQLgetListEcritureComptable">
             <value>
                 SELECT * FROM myerp.ecriture_comptable
             </value>
         </property>
+        
+        
         <property name="SQLgetEcritureComptable">
             <value>
                 SELECT * FROM myerp.ecriture_comptable
                 WHERE id = :id
             </value>
         </property>
+        
+        
         <property name="SQLgetEcritureComptableByRef">
             <value>
                 SELECT * FROM myerp.ecriture_comptable
                 WHERE reference = :reference
             </value>
         </property>
+        
+        
         <property name="SQLloadListLigneEcriture">
             <value>
                 SELECT * FROM myerp.ligne_ecriture_comptable
@@ -44,6 +56,8 @@
                 ORDER BY ligne_id
             </value>
         </property>
+        
+        
         <property name="SQLinsertEcritureComptable">
             <value>
                 INSERT INTO myerp.ecriture_comptable (
@@ -55,6 +69,8 @@
                 )
             </value>
         </property>
+        
+        
         <property name="SQLinsertListLigneEcritureComptable">
             <value>
                 INSERT INTO myerp.ligne_ecriture_comptable (
@@ -66,6 +82,8 @@
                 )
             </value>
         </property>
+        
+        
         <property name="SQLupdateEcritureComptable">
             <value>
                 UPDATE myerp.ecriture_comptable SET
@@ -77,18 +95,51 @@
                     id = :id
             </value>
         </property>
+        
+        
         <property name="SQLdeleteEcritureComptable">
             <value>
                 DELETE FROM myerp.ecriture_comptable
                 WHERE id = :id
             </value>
         </property>
+        
+        
         <property name="SQLdeleteListLigneEcritureComptable">
             <value>
                 DELETE FROM myerp.ligne_ecriture_comptable
                 WHERE ecriture_id = :ecriture_id
             </value>
         </property>
+        
+        
+        <!-- Ajout des méthodes Sql en plus ajouté dans ComptabiliteDao -->
+        
+        <property name="SQLselectSequenceEcritureComptable">
+        <value>
+            SELECT * FROM myerp.sequence_ecriture_comptable
+            WHERE annee = :annee AND journal_code = :code
+        </value>
+    </property>
+    
+    
+        <property name="SQLupdateSequenceEcritureComptable">
+            <value>
+                UPDATE myerp.sequence_ecriture_comptable
+                SET derniere_valeur = :derniere_valeur
+                WHERE annee = :annee
+            </value>
+        </property>
+        
+        
+        <property name="SQLinsertSequenceEcritureComptable">
+            <value>
+                INSERT INTO myerp.sequence_ecriture_comptable
+                VALUES (:code, :annee, :derniere_valeur)
+            </value>
+        </property>
+        
+        
     </bean>
 
 </beans>

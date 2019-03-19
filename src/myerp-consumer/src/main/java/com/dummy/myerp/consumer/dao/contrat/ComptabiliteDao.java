@@ -5,6 +5,7 @@ import java.util.List;
 import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
+import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.NotFoundException;
 
 
@@ -80,4 +81,32 @@ public interface ComptabiliteDao {
      * @param pId l'id de l'écriture
      */
     void deleteEcritureComptable(Integer pId);
+    
+    //***************************************************************************************
+    
+    /*
+    Méthode permettant d'extraire des données de la base de données
+    
+    @param annee
+    @param code
+    */
+    SequenceEcritureComptable selectSequenceEcritureComptable(int annee, String code) throws NotFoundException;
+
+    /*
+    Permet de mettre à jour la séquence de l'écriture comptable
+    
+    @param annee
+    @param deniereValeur
+    @param code
+    */
+    void updateSequenceEcritureComptable(int annee, int derniereValeur, String code);
+    
+    /*
+    Méthode Insert SQL qui permet d'ajouter plusieurs données dans la table issu de la base de donnée
+    
+    @param annee
+    @param derniereValeur
+    @param code
+    */
+    void insertSQLinsertSequenceEcritureComptable(int annee, int derniereValeur, String code);
 }
