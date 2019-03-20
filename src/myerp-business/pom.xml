@@ -60,9 +60,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
         </dependency>
+        
+        
 
         <!-- ===== JSR 303 - Bean validation ===== -->
-        <!-- implementation -->
+        <!-- implementation --> 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -75,6 +77,20 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
 
         <!-- ===== Database (pour les tests) ===== -->
         <!-- Pool de connexion -->
@@ -99,6 +115,9 @@
         <!-- Profile utilisé pour lancer les tests d'intégration de la couche Business -->
         <profile>
             <id>test-business</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <!-- Ajout du répertoire src/test-business/java en tant que source de test du module -->
@@ -131,6 +150,46 @@
                 </testResources>
             </build>
         </profile>
+    
+    <!-- Creation d'un profil de test d'intégration -->
+    
+    <profile>
+        <id>test-business-integration</id>
+        <build>
+            <plugins>
+            <!-- Ajout du répertoire src/test-myerptestbusinessbusiness/java en tant que source de test du module -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/java</source>
+                                <source>src/test-business/integration/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    </executions>
+                </plugin>    
+            </plugins>
+            
+            
+            <testResources>
+                <testResource>
+                    <directory>src/test/resources</directory>
+                </testResource>
+                <testResource>
+                    <directory>src/test-business/integration/resources</directory>
+                </testResource>
+            </testResources>
+        </build>
+    </profile>
     </profiles>
 
 
