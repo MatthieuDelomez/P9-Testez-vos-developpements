@@ -28,7 +28,7 @@ public class EcritureComptable {
     @NotNull private JournalComptable journal;
     
     /** The Reference. */
-    @Pattern(regexp = "\\d{1,5}-\\d{4}/\\d{5}")
+    @Pattern(regexp = "[A-Z][A-Z]-\\d{4}/\\d{5}")
     private String reference;
     
     /** The Date. */
@@ -130,9 +130,9 @@ public class EcritureComptable {
         
         for (LigneEcritureComptable vLigneEcritureComptable : listLigneEcriture) {
          
-        if (vLigneEcritureComptable.getDebit() != null) {
+        if (vLigneEcritureComptable.getCredit() != null) {
          
-        vRetour = vRetour.add(vLigneEcritureComptable.getDebit());
+        vRetour = vRetour.add(vLigneEcritureComptable.getCredit());
            
         }
         
@@ -147,10 +147,9 @@ public class EcritureComptable {
      * Renvoie si l'écriture est équilibrée (TotalDebit = TotalCrédit)
      * @return boolean
      */
-    public boolean isEquilibree() {
+    public int isEquilibree() {
         
-        boolean vRetour = this.getTotalDebit().equals(getTotalCredit());
-        return vRetour;
+        return this.getTotalDebit().compareTo(getTotalCredit()); // Modification du retour de la méthode Boolean en int [ a.compareTo(b)]
     
          }
     
