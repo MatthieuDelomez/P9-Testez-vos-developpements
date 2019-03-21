@@ -72,8 +72,9 @@ public interface ComptabiliteDao {
      * Met à jour l'écriture comptable.
      *
      * @param pEcritureComptable -
+     * @throws com.dummy.myerp.technical.exception.NotFoundException
      */
-    void updateEcritureComptable(EcritureComptable pEcritureComptable);
+    void updateEcritureComptable(EcritureComptable pEcritureComptable) throws NotFoundException;
 
     /**
      * Supprime l'écriture comptable d'id {@code pId}.
