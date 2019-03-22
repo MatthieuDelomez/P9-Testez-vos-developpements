@@ -5,6 +5,7 @@ import java.util.List;
 import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
+import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.NotFoundException;
 
@@ -85,29 +86,26 @@ public interface ComptabiliteDao {
     
     //***************************************************************************************
     
-    /*
-    Méthode permettant d'extraire des données de la base de données
-    
-    @param annee
-    @param code
-    */
-    SequenceEcritureComptable selectSequenceEcritureComptable(int annee, String code) throws NotFoundException;
+   /**
+	 * Insert la séquence en base de données
+	 * @param vSequenceToInsert
+	 * @param code
+	 */
+	void insertSequence(SequenceEcritureComptable vSequenceToInsert, String code);
 
-    /*
-    Permet de mettre à jour la séquence de l'écriture comptable
-    
-    @param annee
-    @param deniereValeur
-    @param code
-    */
-    void updateSequenceEcritureComptable(int annee, int derniereValeur, String code);
-    
-    /*
-    Méthode Insert SQL qui permet d'ajouter plusieurs données dans la table issu de la base de donnée
-    
-    @param annee
-    @param derniereValeur
-    @param code
-    */
-    void insertSQLinsertSequenceEcritureComptable(int annee, int derniereValeur, String code);
+
+	/**
+	 * Met à jour la séquence en base de données
+	 * @param vSequenceToInsert
+	 * @param code
+	 */
+	void updateSequence(SequenceEcritureComptable vSequenceToInsert, String code);
+
+
+	/**
+	 * Renvoie la liste des lignes d'écriture comptable pour un compte
+	 * @param pCompteComptable
+	 * @return
+	 */
+	List<LigneEcritureComptable> getListLigneEcritureComptableByCompte(int pCompteComptable);
 }
