@@ -113,29 +113,31 @@
         </property>
         
         
-        <!-- Ajout des méthodes Sql en plus ajouté dans ComptabiliteDao -->
+        <!-- Ajout des méthodes Sql en plus ajouté dans ComptabiliteDao et qui seront implémenté dans ComptaDaoImpl -->
         
-        <property name="SQLselectSequenceEcritureComptable">
-        <value>
-            SELECT * FROM myerp.sequence_ecriture_comptable
-            WHERE annee = :annee AND journal_code = :code
-        </value>
-    </property>
-    
-    
-        <property name="SQLupdateSequenceEcritureComptable">
+        <property name="SQLinsertSequence">
             <value>
-                UPDATE myerp.sequence_ecriture_comptable
-                SET derniere_valeur = :derniere_valeur
-                WHERE annee = :annee
+                INSERT INTO myerp.sequence_ecriture_comptable (
+                    journal_code, annee, derniere_valeur
+                ) VALUES (
+                    :journal_code, :annee, :derniere_valeur
+                )
+            </value>
+        </property>
+        <property name="SQLupdateSequence">
+            <value>
+                UPDATE myerp.sequence_ecriture_comptable SET 
+                    derniere_valeur = :derniere_valeur
+                WHERE journal_code = :journal_code AND annee = :annee
+                
             </value>
         </property>
         
-        
-        <property name="SQLinsertSequenceEcritureComptable">
+        <property name="SQLgetLastSequence">
             <value>
-                INSERT INTO myerp.sequence_ecriture_comptable
-                VALUES (:code, :annee, :derniere_valeur)
+                SELECT * FROM myerp.sequence_ecriture_comptable
+                WHERE journal_code = :journal_code
+                AND annee = :annee              
             </value>
         </property>
         
