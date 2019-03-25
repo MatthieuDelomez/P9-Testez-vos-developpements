@@ -13,6 +13,7 @@ import com.dummy.myerp.consumer.dao.contrat.ComptabiliteDao;
 import com.dummy.myerp.consumer.db.AbstractDbConsumer;
 import com.dummy.myerp.consumer.db.DataSourcesEnum;
 import com.dummy.myerp.technical.exception.NotFoundException;
+import java.util.Calendar;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Implémentation de l'interface {@link ComptabiliteDao}
  */
-@Transactional(propagation = Propagation.MANDATORY)
 public class ComptabiliteDaoImpl extends AbstractDbConsumer implements ComptabiliteDao {
     
     
@@ -235,7 +235,6 @@ public class ComptabiliteDaoImpl extends AbstractDbConsumer implements Comptabil
             vSqlParams.addValue("compte_comptable_numero", vLigne.getCompteComptable().getNumero());
             vSqlParams.addValue("libelle", vLigne.getLibelle());
             vSqlParams.addValue("debit", vLigne.getDebit());
-            vSqlParams.addValue("ecriture_id", pEcritureComptable.getId()); // Ajout du paramètre Id
             vSqlParams.addValue("credit", vLigne.getCredit());
 
             vJdbcTemplate.update(SQLinsertListLigneEcritureComptable, vSqlParams);
@@ -410,7 +409,63 @@ public class ComptabiliteDaoImpl extends AbstractDbConsumer implements Comptabil
 
         
                       return vList;
-    }
+     
+                       
+                       }
+                       
+                       /*
+                       SQLgetLastSequence
+                       */
+                      private static String SQLgetLastSequence;
+                      
+                      public void setSQLgetLastSequence(String pSQLgetLastSequence) {
+                          
+                      SQLgetLastSequence = pSQLgetLastSequence;
+                      
+                      }
+                       
+                       
+                       /*
+                       Implémentation de la methode pour récupérer la dernière séquence enregistrée
+                       */
+                       @Override
+                       public SequenceEcritureComptable getLastSequence(EcritureComptable pEcritureComptable) throws NotFoundException {
+                           
+                       NamedParameterJdbcTemplate vJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource(DataSourcesEnum.MYERP));
+                       
+                      MapSqlParameterSource vSqlParams = new MapSqlParameterSource();
+                      
+                      vSqlParams.addValue("journal_code", pEcritureComptable.getJournal().getCode());
+                      
+                      
+                      Calendar calendar = Calendar.getInstance();
+                           
+                      calendar.setTime(pEcritureComptable.getDate());
+                      vSqlParams.addValue("annee", calendar.get(Calendar.YEAR));
+                           
+                      SequenceEcritureComptableRM vRM = new SequenceEcritureComptableRM();
+                      SequenceEcritureComptable vBean = new SequenceEcritureComptable();
+                      
+                      
+                      
+                      try {
+                          
+                      vBean = vJdbcTemplate.queryForObject(SQLgetLastSequence, vSqlParams, vRM);
+                      
+                      } catch(EmptyResultDataAccessException vEx) {
+                          
+                      throw new NotFoundException("La séquence n'existe pas !");
+                      
+                      }
+                      
+                      
+                      return vBean;
+                           
+                                                  
+                           
+                       }
+                       
+                       
 
 
     }

@@ -86,7 +86,7 @@ public interface ComptabiliteDao {
     
     //***************************************************************************************
     
-   /**
+                       /**
 	 * Insert la séquence en base de données
 	 * @param vSequenceToInsert
 	 * @param code
@@ -108,4 +108,15 @@ public interface ComptabiliteDao {
 	 * @return
 	 */
 	List<LigneEcritureComptable> getListLigneEcritureComptableByCompte(int pCompteComptable);
+
+
+                      /*
+                      Renvoie la séquence correspondant à la date de l'écriture ainsi qu'au journal
+        
+                      @param pEcritureComptable
+                      @return
+                      @throws NotFoundException
+                      */
+                      SequenceEcritureComptable getLastSequence(EcritureComptable pEcritureComptable) throws NotFoundException;
+
 }
