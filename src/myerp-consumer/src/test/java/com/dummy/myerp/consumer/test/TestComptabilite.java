@@ -134,6 +134,10 @@ import java.util.GregorianCalendar;
 	                      }
                                             
                                             
+                                           
+                                            
+                                            
+                                            
                                             //************************************************************************************************************/
                                             
                                             /*
@@ -317,7 +321,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void getLastSequenceTest() throws NotFoundException {
                                                 
@@ -341,7 +345,7 @@ import java.util.GregorianCalendar;
                                             
                                             
                                             // Test de la dernière valeur sur une séquence existante
-                                            assertTrue("La dernière Séquence existe bien : ", derniereSequence.getDerniereValeur() == 40);
+                                            assertTrue("La dernière Séquence existe bien : ", derniereSequence.getDerniereValeur() == 41);
                                             
                                             
                                             calendar.set(2019, 1, 1);
@@ -367,7 +371,7 @@ import java.util.GregorianCalendar;
                                             
                                             
                                             }
-                                            
+                                            */
                                             
                                             //************************************************************************************************************/
                                             
@@ -375,7 +379,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 
@@ -402,9 +406,38 @@ import java.util.GregorianCalendar;
                                                 
                                             
                                             }
+                                            */
                                             
-	
                                             
+                                            //************************************************************************************************************/
+                                            
+                                            
+                                            /*
+                                            Création de la méthode tqui va tester la taille de la liste attendu pour la ligne EcritureComptable
+                                            
+                                            @Test
+                                            public void getListEcritureComptableByCompteTest() {
+                                                
+                                            List<LigneEcritureComptable> listeEcriture;
+                                            
+                                            //Banque
+                                            listeEcriture = dao.getListLigneEcritureComptableByCompte(512);
+                                            
+                                            assertTrue("Nous allons tester la taille de la liste générée et qui sera attendu en Ligne d'écriture ", listeEcriture.size() == 2);
+
+                                            
+                                            //Nettoyage de la liste
+                                            listeEcriture.clear();
+                                            
+                                            
+                                            //Client
+                                            listeEcriture = dao.getListLigneEcritureComptableByCompte(411);
+                                            
+                                            assertTrue("Nous allons tester la taille de la liste générée et qui sera attendu en Ligne d'écriture ", listeEcriture.size() == 3);
+                                            
+                                            
+                                            }
+                                                                                        */
                                             }
                                             
         
