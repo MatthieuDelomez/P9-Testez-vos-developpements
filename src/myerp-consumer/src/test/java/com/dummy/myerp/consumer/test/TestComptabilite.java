@@ -51,7 +51,7 @@ import java.util.GregorianCalendar;
 		liste=dao.getListEcritureComptable();
 
 		assertTrue("Test taille de la liste attendu Ecritures Comptables", liste.size() == 5);
-		assertTrue("Test si une ecriture test est bien présente",liste.stream().filter(o -> o.getReference().equals("BQ-2016/00005")).findFirst().isPresent());
+		assertTrue("Test si une ecriture test est bien présente",liste.stream().filter(o -> o.getReference().equals("BQ-2019/00005")).findFirst().isPresent());
 		
 		
 	                      }
@@ -241,30 +241,80 @@ import java.util.GregorianCalendar;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                           */
+                                           
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
                                             EcritureComptable testEcritureUpdate;
                                             
                                             //Définition de la ligne que nous voulons mettre à jour
-                                            testEcritureUpdate = dao.getEcritureComptable(-5);
+                                            testEcritureUpdate = dao.getEcritureComptable(-1);
                                             
                                             // Nous définissions la nouvelle référence
-                                            testEcritureUpdate.setReference("AC-2019/00005");
+                                            testEcritureUpdate.setReference("AC-2019/00001");
                                             
                                             dao.updateEcritureComptable(testEcritureUpdate);
                                             
                                             EcritureComptable testEcritureToMAJ;
                                             
-                                            testEcritureToMAJ = dao.getEcritureComptableByRef("AC-2019/00005");
+                                            testEcritureToMAJ = dao.getEcritureComptableByRef("AC-2019/00001");
                                             
                                             
                                             // On vérifie si l'update à bien été fonctionnel sur la ligne que nous avons défini
                                             assertNotNull("La mise à jour à t'elle bien était effective et bien trouvée avec la nouvelle référence attribuée qui est : ", testEcritureToMAJ);
                                             
                                             
+                                            }*/
+                                            
+                                            
+                                            //************************************************************************************************************/
+                                            
+
+                                            /*
+                                            Crétion de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
+                                            */
+                                            @Test
+                                            public void getEcritureComptableByReferenceTest() {
+
+                                            // Varibale existante
+                                            String refEffective = "BQ-2019/00003";
+
+                                            // Variable non existante pour générée une exception
+                                            String refNonEffective = "AC-2020/00001";
+
+
+                                            EcritureComptable ecritureComptable;
+
+                                            try{
+
+                                            assertTrue("Vérification de la récupération d'une éccriture comptable", dao.getEcritureComptableByRef(refEffective).getId() == -3);
+		
+                                            } catch (NotFoundException  exception) {
+
+                                            exception.printStackTrace();
+ 
                                             }
+                                            
+                                            // Bloc qui va générée l'exception                                            
+                                            try {
+
+                                            dao.getEcritureComptableByRef(refNonEffective);
+
+                                            fail("Exception attendue! ");
+
+                                            } catch (NotFoundException exception) {
+
+                                            assertThat(exception.getMessage(), is("EcritureComptable non trouvée ! La référence : " + refNonEffective + "n'existe pas !!!"));
+                                       
+                                            }                            
+
+                                            }
+
+                                            
+                                            
+                                            
+                                           
+                                            
                                             
 	
                                             
