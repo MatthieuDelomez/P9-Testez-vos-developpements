@@ -14,15 +14,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dummy.myerp.consumer.dao.impl.db.dao.ComptabiliteDaoImpl;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
+import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.technical.exception.NotFoundException;
 
 
 
-                                            @RunWith(SpringJUnit4ClassRunner.class)
-                                            @ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
-                                            @ActiveProfiles(profiles="test")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
+@ActiveProfiles(profiles="test")
 
-                                            public class TestComptabilite {
+ public class TestComptabilite {
     
     
                                             /*
@@ -46,8 +47,9 @@ import com.dummy.myerp.technical.exception.NotFoundException;
 		
 		
 	                      }
+                              
         
-        
+                                            //************************************************************************************************************/
         
                                             /*
                                             Création de la méthode pour récupérer une écriture comptable par ID
@@ -73,12 +75,12 @@ import com.dummy.myerp.technical.exception.NotFoundException;
                                             
                                             assertTrue("Nous allons vérifier que la liste à été chargée", testEcriture.getListLigneEcriture().size() == 3);
                                             
-                                            //************************************************************************************************************//
+                                           
                                             
                                             /*
                                             Nous allons tester avec une écriture comptable qui n'existe pas
                                             Exception attendue
-                                           */
+                                           
                                             Id = 35;
                                             
                                             try {
@@ -91,13 +93,44 @@ import com.dummy.myerp.technical.exception.NotFoundException;
                                                 
                                             assertThat(exception.getMessage(), is("Ecriture Comptable n'a pas été trouvée. Id = " + Id));
                                             
-                                            }
+                                            }*/
 
                                             }
+                                           
+                                            
+                                            //************************************************************************************************************/
+                                            
+                                            /*
+                                            Création de la méthode Test pour vérifier les valeurs des journaux comptable
+                                           */
+                                            @Test
+                                            public void getListJournalComptaTest() {
+                                                
+                                            //Variable qui va contenir la liste des journaux
+                                            List<JournalComptable> listeJournaux;
+                                            
+                                            listeJournaux = dao.getListJournalComptable();
+                                            
+                                            /*
+                                            Vérification de la taille de la liste des journaux |  Test si le journal existe [AC]
+                                            */
+                                            
+                                            // La taille de la liste est bien égale à 4
+                                            assertTrue("Nous allons tester la liste attendu, si elle correspond bien à la taille donnée", listeJournaux.size() ==  4);
+                                            
+                                            // Nom du code du journal = AC | Libelle = Achat
+                                            assertTrue("Test si le journal est bien existant", listeJournaux.stream().filter(o -> o.getCode().equals("AC")).findFirst().isPresent());
+		
+		
+	                      }
+	
+                                            
+                                            }
+                                            
         
         
         
 
     
     
-}
+
