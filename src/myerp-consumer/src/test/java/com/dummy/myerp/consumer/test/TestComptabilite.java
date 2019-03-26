@@ -89,7 +89,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Nous allons tester avec une écriture comptable qui n'existe pas
                                             Exception attendue
-                                           
+                                           */
                                             Id = 35;
                                             
                                             try {
@@ -102,8 +102,29 @@ import java.util.GregorianCalendar;
                                                 
                                             assertThat(exception.getMessage(), is("Ecriture Comptable n'a pas été trouvée. Id = " + Id));
                                             
-                                            }*/
+                                            }
 
+                                            }
+                                            
+                                            
+                                            //************************************************************************************************************/
+                                            
+                                            
+                                            /*
+                                            Méthode de test pour permettre la vérification de la liste des comptes comptales
+                                            */
+                                            @Test
+                                            public void getListCompteComptableTest() {
+                                                
+                                            List<CompteComptable> listeCompte;
+                                            
+                                            listeCompte = dao.getListCompteComptable();
+                                            
+                                            assertTrue("test la taille de la liste ", listeCompte.size() == 7);
+                                                
+                                            assertTrue("Test si le compte comptable fournisseur est présent en base ", listeCompte.stream().filter(o -> o.getNumero().equals(401)).findFirst().isPresent());
+		
+                                                
                                             }
                                            
                                             
@@ -123,7 +144,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Vérification de la taille de la liste des journaux |  Test si le journal existe [AC]
                                             */
-                                            
+                                        
                                             // La taille de la liste est bien égale à 4
                                             assertTrue("Nous allons tester la liste attendu, si elle correspond bien à la taille donnée", listeJournaux.size() ==  4 );
                                             
@@ -133,16 +154,14 @@ import java.util.GregorianCalendar;
 		
 	                      }
                                             
-                                            
-                                           
-                                            
+                                                                                        
                                             
                                             
                                             //************************************************************************************************************/
                                             
                                             /*
                                             Création de la methode qui va tester la requête Sql InsertEcriture 
-                                           
+                                           */
                                             @Test
                                             public void insertSqlEcritureTest() throws FunctionalException, NotFoundException{
                                                 
@@ -184,7 +203,7 @@ import java.util.GregorianCalendar;
                                             //Nous vérifions que la variable TestEcriture n'est pas null
                                                 assertNotNull(testEcritureComptable);
                                             
-                                            }*/
+                                            }
                                             
                                             
                                             //************************************************************************************************************/
@@ -193,7 +212,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
@@ -236,7 +255,7 @@ import java.util.GregorianCalendar;
                                             assertTrue(testEcriture.getListLigneEcriture().isEmpty());
 
                                                 
-                                            }*/
+                                            }
                                             
                                             
                                            //************************************************************************************************************/
@@ -246,7 +265,7 @@ import java.util.GregorianCalendar;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                           
+                                           */
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
@@ -269,15 +288,15 @@ import java.util.GregorianCalendar;
                                             assertNotNull("La mise à jour à t'elle bien était effective et bien trouvée avec la nouvelle référence attribuée qui est : ", testEcritureToMAJ);
                                             
                                             
-                                            }*/
+                                            }
                                             
                                             
                                             //************************************************************************************************************/
                                             
 
                                             /*
-                                            Crétion de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
-                                            
+                                            Création de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
+                                            */
                                             @Test
                                             public void getEcritureComptableByReferenceTest() {
 
@@ -313,7 +332,7 @@ import java.util.GregorianCalendar;
                                        
                                             }                            
 
-                                            }*/
+                                            }
                                             
                                             //************************************************************************************************************/
 
@@ -321,7 +340,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void getLastSequenceTest() throws NotFoundException {
                                                 
@@ -345,7 +364,7 @@ import java.util.GregorianCalendar;
                                             
                                             
                                             // Test de la dernière valeur sur une séquence existante
-                                            assertTrue("La dernière Séquence existe bien : ", derniereSequence.getDerniereValeur() == 41);
+                                            assertTrue("La dernière Séquence existe bien : ", derniereSequence.getDerniereValeur() == 40);
                                             
                                             
                                             calendar.set(2019, 1, 1);
@@ -371,7 +390,7 @@ import java.util.GregorianCalendar;
                                             
                                             
                                             }
-                                            */
+                                            
                                             
                                             //************************************************************************************************************/
                                             
@@ -379,7 +398,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 
@@ -406,7 +425,7 @@ import java.util.GregorianCalendar;
                                                 
                                             
                                             }
-                                            */
+                                            
                                             
                                             
                                             //************************************************************************************************************/
@@ -436,8 +455,8 @@ import java.util.GregorianCalendar;
                                             assertTrue("Nous allons tester la taille de la liste générée et qui sera attendu en Ligne d'écriture ", listeEcriture.size() == 3);
                                             
                                             
-                                            }
-                                                                                        */
+                                            }*/
+                                                                                        
                                             }
                                             
         
