@@ -315,7 +315,7 @@ import java.util.GregorianCalendar;
 
                                             
                                             /*
-                                            Méthode Test qui va récupérer la dernière écriture comptable en fonction de la date enregistrée en base
+                                            Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
                                             */
                                             @Test
@@ -350,7 +350,8 @@ import java.util.GregorianCalendar;
                                             
                                             
                                             
-                                            //Bloc try / catch pour tester sur une séquence neuve Exception générée si le Calendar ne correspond pas à la base
+                                            //Bloc try / catch 
+                                            //pour tester sur une séquence neuve Exception générée si le Calendar ne correspond pas à la base
                                             try {
                                                 
                                             derniereSequence = dao.getLastSequence(ecritureComptable);
@@ -367,8 +368,40 @@ import java.util.GregorianCalendar;
                                             
                                             }
                                             
-                                           
                                             
+                                            //************************************************************************************************************/
+                                            
+                                           
+                                            /*
+                                            Méthode qui servira à ajouter une Sequence en base
+                                            @throws NotFoundException
+                                            */
+                                            @Test
+                                            public void insertSequenceTest() throws NotFoundException {
+                                                
+                                            SequenceEcritureComptable newSequence = new SequenceEcritureComptable(2019, 42);
+                                            
+                                            dao.insertSequence(newSequence, "AC");
+                                            
+                                            EcritureComptable ecritureComptable;
+                                            
+                                            ecritureComptable = new EcritureComptable();
+                                            
+                                            ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+                                            
+                                            Calendar calendar = new GregorianCalendar(2019,1,1);
+                                            
+                                            ecritureComptable.setDate(calendar.getTime());
+                                            
+                                            
+                                            SequenceEcritureComptable derniereSequence = dao.getLastSequence(ecritureComptable);
+                                            
+                                            assertTrue("Nous allons vérifier que la dernière sequence insérée est bien : ", derniereSequence.getDerniereValeur()== 42);
+                                            
+                                            assertFalse("Nous retournons une exception si la dernière Sequence = ", derniereSequence.getAnnee() == 2016);
+                                                
+                                            
+                                            }
                                             
 	
                                             
