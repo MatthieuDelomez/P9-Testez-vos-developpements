@@ -76,7 +76,7 @@ import java.util.GregorianCalendar;
                                             testEcriture = dao.getEcritureComptable(Id);
                                             
                                             assertNotNull("Verification que l'ecriture n'est pas nulle", testEcriture);
-                                            assertTrue("Vérification de la référence", testEcriture.getReference().equals("AC-2016/00001"));
+                                            assertTrue("Vérification de la référence", testEcriture.getReference().equals("AC-2019/00001"));
                                             
                                             //Retourn False si la donnée contient un Libelle
                                             assertFalse(testEcriture.getLibelle() == "");
@@ -188,9 +188,9 @@ import java.util.GregorianCalendar;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
-                                            public void deleteEcritureComptableTest() throws NotFoundException {
+                                            public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
                                             // Référence de l'écriture
                                             Integer Id = -1;
@@ -231,7 +231,41 @@ import java.util.GregorianCalendar;
                                             assertTrue(testEcriture.getListLigneEcriture().isEmpty());
 
                                                 
+                                            }*/
+                                            
+                                            
+                                           //************************************************************************************************************/
+                                            
+                                            
+                                            /*
+                                            Test de la méthode update - Mise à jour de l'écriture comptable directement en base
+                                            Mise à jour de la référence
+                                            @throws NotFoundException
+                                           */
+                                            @Test
+                                            public void updateSqlEcritureComptableTest() throws NotFoundException {
+                                                
+                                            EcritureComptable testEcritureUpdate;
+                                            
+                                            //Définition de la ligne que nous voulons mettre à jour
+                                            testEcritureUpdate = dao.getEcritureComptable(-5);
+                                            
+                                            // Nous définissions la nouvelle référence
+                                            testEcritureUpdate.setReference("AC-2019/00005");
+                                            
+                                            dao.updateEcritureComptable(testEcritureUpdate);
+                                            
+                                            EcritureComptable testEcritureToMAJ;
+                                            
+                                            testEcritureToMAJ = dao.getEcritureComptableByRef("AC-2019/00005");
+                                            
+                                            
+                                            // On vérifie si l'update à bien été fonctionnel sur la ligne que nous avons défini
+                                            assertNotNull("La mise à jour à t'elle bien était effective et bien trouvée avec la nouvelle référence attribuée qui est : ", testEcritureToMAJ);
+                                            
+                                            
                                             }
+                                            
 	
                                             
                                             }
