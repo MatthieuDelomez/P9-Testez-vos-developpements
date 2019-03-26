@@ -17,6 +17,7 @@ import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
+import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
 import java.math.BigDecimal;
@@ -272,7 +273,7 @@ import java.util.GregorianCalendar;
 
                                             /*
                                             Crétion de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
-                                            */
+                                            
                                             @Test
                                             public void getEcritureComptableByReferenceTest() {
 
@@ -308,10 +309,63 @@ import java.util.GregorianCalendar;
                                        
                                             }                            
 
-                                            }
+                                            }*/
+                                            
+                                            //************************************************************************************************************/
 
                                             
+                                            /*
+                                            Méthode Test qui va récupérer la dernière écriture comptable en fonction de la date enregistrée en base
+                                            @throws NotFoundException
+                                            */
+                                            @Test
+                                            public void getLastSequenceTest() throws NotFoundException {
+                                                
+                                                
+                                            EcritureComptable ecritureComptable;
                                             
+                                            //Création de la variable pour l'écriture comptable
+                                            ecritureComptable = new EcritureComptable();
+                                            
+                                            // Nous settons l'écriture comptable au journal comptable
+                                            ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+                                            
+                                            // Nous définissions la date à récupérer via un calendar
+                                            Calendar calendar = new GregorianCalendar(2016, 1, 1);
+                                            
+                                            //Nous settons l'écriture comptable à la date
+                                            ecritureComptable.setDate(calendar.getTime());
+                                            
+                                            //Nous definissons la derniere valeur de la sequence
+                                            SequenceEcritureComptable derniereSequence = dao.getLastSequence(ecritureComptable);
+                                            
+                                            
+                                            // Test de la dernière valeur sur une séquence existante
+                                            assertTrue("La dernière Séquence existe bien : ", derniereSequence.getDerniereValeur() == 40);
+                                            
+                                            
+                                            calendar.set(2019, 1, 1);
+                                            
+                                            ecritureComptable.setDate(calendar.getTime());
+                                            
+                                            
+                                            
+                                            //Bloc try / catch pour tester sur une séquence neuve Exception générée si le Calendar ne correspond pas à la base
+                                            try {
+                                                
+                                            derniereSequence = dao.getLastSequence(ecritureComptable);
+                                            
+                                            fail("Exception qui sera générée");
+                                            
+                                            } catch (NotFoundException exception) {
+                                                
+                                            assertThat(exception.getMessage(), is("La séquence n'existe pas !"));
+                                                    
+
+                                            }
+                                            
+                                            
+                                            }
                                             
                                            
                                             
