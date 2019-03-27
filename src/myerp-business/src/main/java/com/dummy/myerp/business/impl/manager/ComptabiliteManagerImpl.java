@@ -15,6 +15,7 @@ import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
+import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
 
@@ -272,4 +273,22 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
             getTransactionManager().rollbackMyERP(vTS);
         }
     }
+    
+    
+    //*****************************************************************************************************************//
+    
+    
+    /*
+    Implémentation de la méthode qui servira à récupérer la dernière séquence
+    d'une écriture comptable
+    @param pEcritureCommptable
+    @return
+    @throws NotFoundException
+    */
+    @Override
+    public SequenceEcritureComptable getLastSequence(EcritureComptable pEcritureComptable) throws NotFoundException {
+        
+        return getDaoProxy().getComptabiliteDao().getLastSequence(pEcritureComptable);
+    }
+    
 }
