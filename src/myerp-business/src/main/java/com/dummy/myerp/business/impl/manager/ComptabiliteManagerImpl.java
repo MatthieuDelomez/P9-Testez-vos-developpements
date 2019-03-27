@@ -390,6 +390,35 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  
                                  }
                                  
+                                 
+                                 /*
+                                 Implémentation de la méthode updateSequence
+                                 @param sequenceInsert
+                                 @param code
+                                 @throws FunctionalException
+                                 */
+                                 @Override
+                                 public void updateSequence(SequenceEcritureComptable sequenceInsert, String code) throws FunctionalException {
+                                     
+                                 //Définition du statut de la transaction
+                                 TransactionStatus transactionStatus = getTransactionManager().beginTransactionMyERP();
+                                 
+                                 try {
+                                     
+                                 getDaoProxy().getComptabiliteDao().updateSequence(sequenceInsert, code);
+                                 getTransactionManager().commitMyERP(transactionStatus);
+                                 
+                                 transactionStatus = null;
+                                 
+                                 
+                                 } finally {
+                                     
+                                 getTransactionManager().rollbackMyERP(transactionStatus);
+                                 
+                                 }
+                                 
+                                 }
+                                 
         
                    
         
