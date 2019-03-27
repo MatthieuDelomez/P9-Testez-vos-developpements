@@ -96,5 +96,14 @@ public interface ComptabiliteManager {
     void insertSequence(SequenceEcritureComptable sequenceInsert, String code) ;
     
     
+    /*
+    Création de la méthode Update qui aura pour conséquence de mettre à jour la séquence choisie
+    @param sequenceInsert
+    @param code
+    @throws FunctionalException
+    */
+    void updateSequence(SequenceEcritureComptable sequenceInsert, String code) throws FunctionalException;
+    
+    
     
 }
