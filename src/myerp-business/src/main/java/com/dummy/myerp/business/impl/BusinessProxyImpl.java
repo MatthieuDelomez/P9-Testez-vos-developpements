@@ -11,19 +11,24 @@ import com.dummy.myerp.consumer.dao.contrat.DaoProxy;
  */
 public class BusinessProxyImpl implements BusinessProxy {
 
+    
+    
     // ==================== Attributs Static ====================
     /** Le Proxy d'accès à la couche Consumer-DAO */
     private static DaoProxy daoProxy;
+    
 
 
     // ==================== Attributs ====================
     /** The Comptabilite manager. */
     private ComptabiliteManager comptabiliteManager = new ComptabiliteManagerImpl();
+    
 
 
     // ==================== Constructeurs ====================
     /** Instance unique de la classe (design pattern Singleton) */
     private static final BusinessProxyImpl INSTANCE = new BusinessProxyImpl();
+    
 
     /**
      * Renvoie l'instance unique de la classe (design pattern Singleton).
@@ -31,11 +36,16 @@ public class BusinessProxyImpl implements BusinessProxy {
      * @return {@link BusinessProxyImpl}
      */
     protected static BusinessProxyImpl getInstance() {
-        if (daoProxy == null) {
-            throw new UnsatisfiedLinkError("La classe BusinessProxyImpl n'a pas été initialisée.");
-        }
-        return BusinessProxyImpl.INSTANCE;
-    }
+        
+                                 if (daoProxy == null) {
+                                      
+                                 throw new UnsatisfiedLinkError("La classe BusinessProxyImpl n'a pas été initialisée.");
+       
+                                 }
+      
+                                 return BusinessProxyImpl.INSTANCE;
+  
+                                 }
 
     /**
      * Renvoie l'instance unique de la classe (design pattern Singleton).
@@ -45,23 +55,36 @@ public class BusinessProxyImpl implements BusinessProxy {
      * @return {@link BusinessProxyImpl}
      */
     public static BusinessProxyImpl getInstance(DaoProxy pDaoProxy,
-                                                TransactionManager pTransactionManager) {
-        daoProxy = pDaoProxy;
-        AbstractBusinessManager.configure(BusinessProxyImpl.INSTANCE, pDaoProxy, pTransactionManager);
-        return BusinessProxyImpl.INSTANCE;
-    }
+            
+                                                                                        TransactionManager pTransactionManager) {
+        
+                                                                                        daoProxy = pDaoProxy;
+                                        
+                                                                                        AbstractBusinessManager.configure(BusinessProxyImpl.INSTANCE, pDaoProxy, pTransactionManager);
+                                                                                        
+                                                                                         return BusinessProxyImpl.INSTANCE;
+  
+                                                                                        }
 
-    /**
-     * Constructeur.
-     */
-    protected BusinessProxyImpl() {
-        super();
-    }
+                                                                                        
+                                                                                        /**
+                                                                                        * Constructeur.
+                                                                                        */
+                                                                                        protected BusinessProxyImpl() {
+                                                                                        
+                                                                                        super();
+                                                                                        
+                                                                                        }
 
 
-    // ==================== Getters/Setters ====================
-    @Override
-    public ComptabiliteManager getComptabiliteManager() {
-        return comptabiliteManager;
-    }
-}
+                                                                                        // ==================== Getters/Setters ====================
+    
+    
+                                                                                        @Override
+                                                                                        public ComptabiliteManager getComptabiliteManager() {
+                                   
+                                                                                        return comptabiliteManager;
+                 
+                                                                                        }
+
+                                                                                        }

@@ -61,6 +61,66 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
     // TODO à tester
     @Override
     public synchronized void addReference(EcritureComptable pEcritureComptable) {
+        
+                   /*
+                    Création d'un tableau de séparation String 
+                   */
+        //           String [] separateur = new String [] {"/", "-"};
+                   
+                   /*
+                   Appel de la référence dans le bean EcritureComptable
+                   */
+           //        String reference = pEcritureComptable.getReference();
+                   
+                   /*
+                   Condition: si la référence est null alors invoquer la méthode Creation de réfernce et l'ajouter dans l'écriture comptable
+                   */
+              //     if(reference == null) {
+                       
+                 //  reference = this.createReference(pEcritureComptable.getJournal().getCode(), pEcritureComptable.getDate(), separateur);
+                   
+                   
+                   
+                   /*
+                   [0] == XX || [1] == Année de l'écriture || [2] == numéro 
+                   */
+                   
+          /*         String [] codeAnneeNumero = ExtraireCodeAnnee(reference, separateur);
+                   
+                   SequenceEcritureComptable sequenceEcritureComptable = null;
+                   
+                   if(codeAnneeNumero[1] != null) {
+                       
+                   int anneeTrouvee = Integer.parseInt(codeAnneeNumero[1]);
+                   
+                   try {
+                       
+                    sequenceEcritureComptable = getDaoProxy().getComptabiliteDao().selectSequenceEcritureComptable(anneeTrouvee, codeAnneeNumero[0]);
+                    
+                    int numero = sequenceEcritureComptable.getDerniereValeur();
+                    
+                    /*
+                    On incrémente le numéro existant
+                    */
+              /*      numero++;
+                    
+                    
+                    codeAnneeNumero[2] = calculerNumero(numero);
+                    
+                    getDaoProxy().getComptabiliteDao().updateEcritureComptable(Integer.parseInt(codeAnneeNumero[1]), numero, codeAnneeNumero[0]);
+                    
+                   } catch (NotFoundException ex) {
+                   
+                   codeAnneeNumero[2] = calculerNumero(1);
+                   
+                   getDaoProxy().getComptabiliteDao().insertEcritureComptable(anneeTrouvee, Integer.parseInt(codeAnneeNumero[2]), codeAnneeNumero[0]);
+                   
+                   }
+                   }
+        
+        
+        */
+        
         // TODO à implémenter
         // Bien se réferer à la JavaDoc de cette méthode !
         /* Le principe :
@@ -131,6 +191,8 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
             throw new FunctionalException(
                 "L'écriture comptable doit avoir au moins deux lignes : une ligne au débit et une ligne au crédit.");
         }
+        
+        
 
         // TODO ===== RG_Compta_5 : Format et contenu de la référence
         // vérifier que l'année dans la référence correspond bien à la date de l'écriture, idem pour le code journal...
