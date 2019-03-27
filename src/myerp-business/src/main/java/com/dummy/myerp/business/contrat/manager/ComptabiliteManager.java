@@ -7,6 +7,8 @@ import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
+import com.dummy.myerp.technical.exception.NotFoundException;
+import java.math.BigDecimal;
 
 
 /**
@@ -103,6 +105,23 @@ public interface ComptabiliteManager {
     @throws FunctionalException
     */
     void updateSequence(SequenceEcritureComptable sequenceInsert, String code) throws FunctionalException;
+    
+    
+    /*
+    Création de la méthode qui servira à renvoyer le solde d'un compte comptable désigné
+    @param compteComptable
+    @return
+    */
+    BigDecimal getSoldeComptable(int compteComptable);
+    
+    
+    /*
+    Création de la méthode pour récupérer la dernière séquence
+    @param pEcritureComptable
+    @return
+    @throws NotFoundException
+    */
+    SequenceEcritureComptable getLastSequence(EcritureComptable pEcritureComptable) throws NotFoundException;
     
     
     
