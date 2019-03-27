@@ -18,6 +18,7 @@ import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
+import java.util.Calendar;
 
 
 /**
@@ -56,86 +57,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         return getDaoProxy().getComptabiliteDao().getListEcritureComptable();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    // TODO à tester
-    @Override
-    public synchronized void addReference(EcritureComptable pEcritureComptable) {
-        
-                   /*
-                    Création d'un tableau de séparation String 
-                   */
-        //           String [] separateur = new String [] {"/", "-"};
-                   
-                   /*
-                   Appel de la référence dans le bean EcritureComptable
-                   */
-           //        String reference = pEcritureComptable.getReference();
-                   
-                   /*
-                   Condition: si la référence est null alors invoquer la méthode Creation de réfernce et l'ajouter dans l'écriture comptable
-                   */
-              //     if(reference == null) {
-                       
-                 //  reference = this.createReference(pEcritureComptable.getJournal().getCode(), pEcritureComptable.getDate(), separateur);
-                   
-                   
-                   
-                   /*
-                   [0] == XX || [1] == Année de l'écriture || [2] == numéro 
-                   */
-                   
-          /*         String [] codeAnneeNumero = ExtraireCodeAnnee(reference, separateur);
-                   
-                   SequenceEcritureComptable sequenceEcritureComptable = null;
-                   
-                   if(codeAnneeNumero[1] != null) {
-                       
-                   int anneeTrouvee = Integer.parseInt(codeAnneeNumero[1]);
-                   
-                   try {
-                       
-                    sequenceEcritureComptable = getDaoProxy().getComptabiliteDao().selectSequenceEcritureComptable(anneeTrouvee, codeAnneeNumero[0]);
-                    
-                    int numero = sequenceEcritureComptable.getDerniereValeur();
-                    
-                    /*
-                    On incrémente le numéro existant
-                    */
-              /*      numero++;
-                    
-                    
-                    codeAnneeNumero[2] = calculerNumero(numero);
-                    
-                    getDaoProxy().getComptabiliteDao().updateEcritureComptable(Integer.parseInt(codeAnneeNumero[1]), numero, codeAnneeNumero[0]);
-                    
-                   } catch (NotFoundException ex) {
-                   
-                   codeAnneeNumero[2] = calculerNumero(1);
-                   
-                   getDaoProxy().getComptabiliteDao().insertEcritureComptable(anneeTrouvee, Integer.parseInt(codeAnneeNumero[2]), codeAnneeNumero[0]);
-                   
-                   }
-                   }
-        
-        
-        */
-        
-        // TODO à implémenter
-        // Bien se réferer à la JavaDoc de cette méthode !
-        /* Le principe :
-                1.  Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
-                    (table sequence_ecriture_comptable)
-                2.  * S'il n'y a aucun enregistrement pour le journal pour l'année concernée :
-                        1. Utiliser le numéro 1.
-                    * Sinon :
-                        1. Utiliser la dernière valeur + 1
-                3.  Mettre à jour la référence de l'écriture avec la référence calculée (RG_Compta_5)
-                4.  Enregistrer (insert/update) la valeur de la séquence en persitance
-                    (table sequence_ecriture_comptable)
-         */
-    }
+
 
     /**
      * {@inheritDoc}
@@ -291,4 +213,153 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         return getDaoProxy().getComptabiliteDao().getLastSequence(pEcritureComptable);
     }
     
-}
+    
+                                 /**
+                                 * {@inheritDoc}
+     
+                                  Le principe :
+                                 * 
+                                 1.  Remonter depuis la persitance la dernière valeur de la séquence du journal pour l'année de l'écriture
+                                                                   (table sequence_ecriture_comptable)
+                                 * 
+                                 2.  * S'il n'y a aucun enregistrement pour le journal pour l'année concernée :
+                                 *
+                                 1. Utiliser le numéro 1.
+                                 *  
+                                 * Sinon :
+                                 *
+                                 1. Utiliser la dernière valeur + 1
+                                 *
+                                 3.  Mettre à jour la référence de l'écriture avec la référence calculée (RG_Compta_5)
+                                 *
+                                 4.  Enregistrer (insert/update) la valeur de la séquence en persitance
+                                 * 
+                                                                  (table sequence_ecriture_comptable)   
+                                 **/
+    
+    //*************************************** ===== METHODE A TESTER =====*****************************************
+    
+   @Override
+    public synchronized void addReference(EcritureComptable pEcritureComptable) {
+        
+        
+                                 //Nous allons récupérer en premier lieu la dernière séquence enregitrée
+                                 SequenceEcritureComptable sequenceEcritureComptable;
+                                 
+                                 
+                                 //Séquence que nous allons insérer au sein du Dao / Maj
+                                 SequenceEcritureComptable sequenceInsert;
+                                 
+                                 //Création des objets SequenceEcritureComptable
+                                 sequenceEcritureComptable = new SequenceEcritureComptable();
+                                 sequenceInsert = new SequenceEcritureComptable();
+                                 
+                                 
+                                 //Nous récupérons la dernière séquence via une variable Integer
+                                 int derniereSequence;
+                                 
+                                 
+                                 
+                                 //Bloc try / catch pour tenter de récupérer la dernière séquence enregistrée
+                                 try {
+                                     
+                                 sequenceEcritureComptable = getLastSequence(pEcritureComptable);
+                                 
+                                 //Nous définissons la valeur de la dernière séquence
+                                 derniereSequence = sequenceEcritureComptable.getDerniereValeur() + 1;
+                                 
+                                 
+                                 //Exception générée si la dernière séquence est égale à null ou à 1
+                                 } catch (NotFoundException exception) {
+                                     
+                                 derniereSequence = 1;
+                                 
+                                 sequenceEcritureComptable = null ;
+                                     
+                                     
+                                 }
+                                 
+                                 
+                                 //Référence à intégrer
+                                 String reference = "";
+                                 
+                                 //Integration du code du journal [On assigne la valeur de la réference + ecritureCompta + Journal + Code]
+                                 reference +=  pEcritureComptable.getJournal().getCode();
+                                 reference += "-"; 
+                                 
+                                 
+                                 //Init de la date via un Calendar
+                                 Calendar calendar = Calendar.getInstance();
+                                 
+                                 //On ajoute la date à l'écriture comptable
+                                 calendar.setTime(pEcritureComptable.getDate());
+                                 
+                                 //Référence doit correspondre à l'année enregistrée
+                                 reference += String.valueOf(Calendar.YEAR);
+                                 
+                                 
+                                 //Ajout du séparateur
+                                 reference += "/";
+                                 
+                                 //Et nous ajoutons la dernière séquence dans la variable reference
+                                 // %05d = convertion en 0 || Si derniere Sequence = 1 alors en sortie = 00001
+                                 //String.format necessaire pour réaliser la conversion
+                                 reference += String.format("%05d", derniereSequence);
+                                 
+                                 
+                                 //Mise à jour de la référence
+                                 pEcritureComptable.setReference(reference);
+                                 
+                                 
+                                 
+                                 
+                                 /*
+                                 Enregistrement de la séquence au sein de la base de données
+                                 Méthodologie : 
+                                 *
+                                 Si la méthode n'existe pas nous définissions la nouvelle séquence
+                                 pour ensuite l'insérer dans la base de données
+                                 */
+                                 if (sequenceEcritureComptable == null) {
+                                     
+                                 sequenceEcritureComptable.setAnnee(calendar.get(Calendar.YEAR));
+                                 sequenceEcritureComptable.setDerniereValeur(derniereSequence);
+                                 
+                                 
+                                 insertSequence(sequenceInsert, pEcritureComptable.getJournal().getCode());
+                                 
+                                 }
+                                 
+                                 
+                                 //Sinon on part de la séquence récupérée que nous allons modifier et la mettre à jour
+                                 else{
+                                     
+                                 sequenceInsert = sequenceEcritureComptable;
+                                 sequenceInsert.setDerniereValeur(derniereSequence);
+                                 
+                                 
+                                 try {
+                                     
+                                 updateSequence(sequenceInsert, pEcritureComptable.getJournal().getCode());
+                                     
+                                 } catch (FunctionalException exception) {
+                                     
+                                 exception.printStackTrace();
+                                     
+                                     
+                                 }
+                                 
+                                 
+                                 }
+                                     
+                                     
+                                 }
+                                 
+        
+                   
+        
+
+                                 }
+    
+    
+
