@@ -87,7 +87,8 @@
 
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.25.1</version>
             <scope>test</scope>
         </dependency>
         
@@ -197,5 +198,13 @@
     <!-- Build -->
     <!-- =============================================================== -->
     <build>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+        
     </build>
 </project>
