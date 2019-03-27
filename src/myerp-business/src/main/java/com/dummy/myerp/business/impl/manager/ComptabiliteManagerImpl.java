@@ -285,6 +285,8 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  
                                  //Integration du code du journal [On assigne la valeur de la réference + ecritureCompta + Journal + Code]
                                  reference +=  pEcritureComptable.getJournal().getCode();
+                                 
+                                 //Ajout d'un séparateur
                                  reference += "-"; 
                                  
                                  
@@ -353,6 +355,39 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  }
                                      
                                      
+                                 }
+    
+    
+                                 /*
+                                Implementation de la méthode insertSequence
+                                @param sequenceInsert
+                                @param code
+                                */
+                                 @Override
+                                 public void insertSequence(SequenceEcritureComptable sequenceInsert, String code) {
+                                 
+                                 //Ensemble d'instruction qui doit être exécutée en même temps
+                                 //Définition du Statut de la transaction
+                                 TransactionStatus transactionStatus = getTransactionManager().beginTransactionMyERP();
+                                 
+                                 try {
+                                     
+                                 getDaoProxy().getComptabiliteDao().insertSequence(sequenceInsert, code);
+                                 
+                                 
+                                 //Auto commit ==> Transaction Sql considérée comme une seule transaction
+                                 getTransactionManager().commitMyERP(transactionStatus);
+                                 
+                                 transactionStatus = null;
+                                 
+                                 } finally {
+                                 
+                                 // Appel à la méthode Rollback pour annuler la transaction    
+                                 getTransactionManager().rollbackMyERP(transactionStatus);
+                                     
+                                     
+                                 }
+                                 
                                  }
                                  
         
