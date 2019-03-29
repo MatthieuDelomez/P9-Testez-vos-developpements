@@ -56,24 +56,10 @@ public abstract class AbstractBusinessManager {
     }
 
 
-    /**
-     * Renvoie le Proxy d'accès à la couche Consumer-DAO
-     *
-     * @return {@link DaoProxy}
-     */
-    protected DaoProxy getDaoProxy() {
-        return daoProxy;
-    }
+    
 
 
-    /**
-     * Renvoie le gestionnaire de Transaction
-     *
-     * @return TransactionManager
-     */
-    protected TransactionManager getTransactionManager() {
-        return transactionManager;
-    }
+  
 
 
     /**
@@ -90,4 +76,54 @@ public abstract class AbstractBusinessManager {
         
         return vValidator;
     }
+    
+    
+    //********************************************************************************************//
+    
+    /**
+     * Renvoie le Proxy d'accès à la couche Consumer-DAO
+     *
+     * @return {@link DaoProxy}
+     */
+    protected DaoProxy getDaoProxy() {
+        return daoProxy;
+    }
+    
+    /*
+    Implementation de la méthode static setDaoProxy [ A initialiser dans la classe mère ]
+    Méthode qui va nous servir pour configurer les tests dans la classe ComptamanagerImplTest
+    Pour que nous puissions définir le DaoProxy
+    @param daoProxy
+    */
+    public static void setDaoProxy(DaoProxy daoProxy) {
+        
+    AbstractBusinessManager.daoProxy = daoProxy;    
+        
+    }
+    
+     //********************************************************************************************//
+    
+    
+      /**
+     * Renvoie le gestionnaire de Transaction
+     *
+     * @return TransactionManager
+     */
+    protected TransactionManager getTransactionManager() {
+        return transactionManager;
+    }
+    
+    /*
+    Idem pour la transactionManager [Setters à initialiser dans la classe mère des Managers]
+    Définition de la transactionManager qui servira à configurer les test dans la classe ComptaManagerImplTest
+    @param transactionManager
+    */
+    public static void setTransactionManager(TransactionManager transactionManager) {
+        
+    AbstractBusinessManager.transactionManager = transactionManager;
+        
+        
+    }
+    
+    
 }

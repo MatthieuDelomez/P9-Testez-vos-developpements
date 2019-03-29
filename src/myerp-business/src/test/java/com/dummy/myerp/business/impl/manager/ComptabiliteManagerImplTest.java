@@ -1,26 +1,70 @@
 package com.dummy.myerp.business.impl.manager;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.runner.RunWith;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import com.dummy.myerp.business.impl.TransactionManager;
+
+import com.dummy.myerp.consumer.dao.contrat.DaoProxy;
+import com.dummy.myerp.consumer.dao.impl.db.dao.ComptabiliteDaoImpl;
+
 import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
+
 import com.dummy.myerp.technical.exception.FunctionalException;
-import org.junit.runner.RunWith;
+
+
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class ComptabiliteManagerImplTest {
 
+    // Classe à tester
     private ComptabiliteManagerImpl manager = new ComptabiliteManagerImpl();
     
+    //Nous allons mocker le proxy Dao
+     private DaoProxy daoProxyMocking = mock(DaoProxy.class);
+     
+     //Mocking du transaction manager
+     private TransactionManager transactionManagerMocking = mock(TransactionManager.class);
     
+     //Mocking de la classe ComptaDao
+     private ComptabiliteDaoImpl comptaDaoMocking = mock(ComptabiliteDaoImpl.class);
+     
+     
+     
+     //********************************************************************************************//
+     
+     
+     /*
+     Configuration en Amont du Test via l'annotation Before :
+     - Mocking du Dao
+     - Mocking de la transactionManager
+     */
+     @Before
+     public void Config() {
+         
+     ComptabiliteManagerImpl.setDaoProxy(this.daoProxyMocking);
+     ComptabiliteManagerImpl.setTransactionManager(this.transactionManagerMocking);
+     when(this.daoProxyMocking.getComptabiliteDao()).thenReturn(this.comptaDaoMocking);
+     when(this.transactionManagerMocking.beginTransactionMyERP()).thenReturn(null);
+         
+     }
+     
+     
+     //********************************************************************************************//
 
 
     @Test
