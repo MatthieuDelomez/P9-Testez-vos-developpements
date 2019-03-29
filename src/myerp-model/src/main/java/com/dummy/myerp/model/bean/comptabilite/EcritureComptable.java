@@ -98,6 +98,8 @@ public class EcritureComptable {
      * Calcul et renvoie le total des montants au débit des lignes d'écriture
      *
      * @return {@link BigDecimal}, {@link BigDecimal#ZERO} si aucun montant au débit
+     * 
+     * Méthode qui sera testée dans la class EcritureComptableTest
      */
     public BigDecimal getTotalDebit() {
         
@@ -123,6 +125,8 @@ public class EcritureComptable {
      * Calcul et renvoie le total des montants au crédit des lignes d'écriture
      *
      * @return {@link BigDecimal}, {@link BigDecimal#ZERO} si aucun montant au crédit
+     * 
+     * 
      */
     public BigDecimal getTotalCredit() {
         
