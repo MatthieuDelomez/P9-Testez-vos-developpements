@@ -69,6 +69,8 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         this.checkEcritureComptableUnit(pEcritureComptable);
         this.checkEcritureComptableContext(pEcritureComptable);
     }
+    
+    
 
 
     /**
@@ -80,19 +82,30 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
      */
     // TODO tests à compléter
     protected void checkEcritureComptableUnit(EcritureComptable pEcritureComptable) throws FunctionalException {
-        // ===== Vérification des contraintes unitaires sur les attributs de l'écriture
-        Set<ConstraintViolation<EcritureComptable>> vViolations = getConstraintValidator().validate(pEcritureComptable);
-        if (!vViolations.isEmpty()) {
-            throw new FunctionalException("L'écriture comptable ne respecte pas les règles de gestion.",
-                                          new ConstraintViolationException(
-                                              "L'écriture comptable ne respecte pas les contraintes de validation",
-                                              vViolations));
+        
+        
+                                 // ===== Vérification des contraintes unitaires sur les attributs de l'écriture
+        
+                                 Set<ConstraintViolation<EcritureComptable>> vViolations = getConstraintValidator().validate(pEcritureComptable);
+        
+                                 if (!vViolations.isEmpty()) {
+            
+                                 throw new FunctionalException("L'écriture comptable ne respecte pas les règles de gestion.",
+                                          
+                                 new ConstraintViolationException("L'écriture comptable ne respecte pas les contraintes de validation", vViolations));
         }
+        
+        
+        
+        
+        
 
         // ===== RG_Compta_2 : Pour qu'une écriture comptable soit valide, elle doit être équilibrée
-        if (!pEcritureComptable.isEquilibree()) {
+        //Comme modification de la méthode isEquilibree en Integer ==> Ajout de la valeur  [!=0]
+        if (pEcritureComptable.isEquilibree() != 0) {
             throw new FunctionalException("L'écriture comptable n'est pas équilibrée.");
         }
+        
 
         // ===== RG_Compta_3 : une écriture comptable doit avoir au moins 2 lignes d'écriture (1 au débit, 1 au crédit)
         int vNbrCredit = 0;
@@ -118,8 +131,49 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         
         
 
-        // TODO ===== RG_Compta_5 : Format et contenu de la référence
+        // ===== RG_Compta_5 : Format et contenu de la référence
         // vérifier que l'année dans la référence correspond bien à la date de l'écriture, idem pour le code journal...
+        
+        //Si la reference de l'écriture comptable n'est pas égale à null
+        if(pEcritureComptable.getReference() != null){
+            
+         //Création d'un objet String journal
+         String journal = new String();
+         
+         //Création d'iun objet String date
+         String date = new String();
+         
+         //Création d'un objet referencePourTest ==> renvoie la reference assignée à l'écriture comptable
+         String referencePourTest = pEcritureComptable.getReference();
+         
+         journal = referencePourTest.substring(0, referencePourTest.indexOf("-"));
+         
+         date = referencePourTest.substring(referencePourTest.indexOf("-") + 1, referencePourTest.indexOf("-") +5);
+         
+         
+         //Vérification dans les logs de l'affichage correcte des subtrings
+         System.out.println(journal + " " + date);
+         
+         
+         //Nous allons récupérer l'année via un calendar
+         Calendar calendar = Calendar.getInstance();
+         
+         String datePourTest = new String ();
+         
+         //On set la date à l'écriture comptables en gettant la date actuelle
+         calendar.setTime(pEcritureComptable.getDate());
+         datePourTest = String.valueOf(calendar.get(Calendar.YEAR));
+         
+         
+         // Génération des exceptions en cas de non conformitée des références
+         if(!datePourTest.equals(date)) throw new FunctionalException("La date n'est pas conforme à la date inscrit dans l'écriture");
+         
+         if(!journal.equals(pEcritureComptable.getJournal().getCode())) throw new FunctionalException("La référence du journal n'est pas conforme au code du journal inscrit dans l'écriture");
+         
+         
+         
+        }
+        
     }
 
 
