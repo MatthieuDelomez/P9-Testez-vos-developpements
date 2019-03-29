@@ -19,6 +19,7 @@ import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
 import java.util.Calendar;
+import java.util.Iterator;
 
 
 /**
@@ -376,6 +377,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  
                                  
                                  //Auto commit ==> Transaction Sql considérée comme une seule transaction
+                                 //Insertion en base
                                  getTransactionManager().commitMyERP(transactionStatus);
                                  
                                  transactionStatus = null;
@@ -392,7 +394,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  
                                  
                                  /*
-                                 Implémentation de la méthode updateSequence
+                                 Implementation de la méthode updateSequence
                                  @param sequenceInsert
                                  @param code
                                  @throws FunctionalException
@@ -419,11 +421,70 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                  
                                  }
                                  
+                                 
+                                 /*
+                                 Implementation de la méthode pour récupérer le SoldeComptable d'un compte
+                                 @param compteComptable
+                                 @return
+                                 */
+                                 @Override
+                                 public BigDecimal getSoldeComptable(int compteComptable) {
+                                     
+                                     
+                                 List<LigneEcritureComptable> listeEcritureComptable;
+                                 
+                                 //On configure le solde à 0
+                                 BigDecimal solde = BigDecimal.ZERO;
+                                 
+                                 // Init de la variable listeEcritureComptable 
+                                 listeEcritureComptable = getDaoProxy().getComptabiliteDao().getListLigneEcritureComptableByCompte(compteComptable);
+                                 
+                                 
+                                 
+                                 //Si la liste n'est pas égale à null
+                                 //alors invoquer un iterator pour parcourir la liste 
+                                 if(listeEcritureComptable != null){
+                                     
+                                 for (Iterator<LigneEcritureComptable> iterator = listeEcritureComptable.iterator();
+                                                                                                   
+                                                                                                                                                                       iterator.hasNext();) { //Retourne true si l'itérateur n'est pas arrivé en fin de liste sinon renvoie false
+                                 
+                                 //Parcour les objets suivants grâce à  iterator.next    
+                                 LigneEcritureComptable ligneEcritureComptable = (LigneEcritureComptable) iterator.next(); 
+                                 
+                                 //si le débit de l'écritureComptable n'est pas égale à null
+                                 //Alors assigner à la variable solde le débit de l'écriture comptable
+                                 if(ligneEcritureComptable.getDebit() != null) {
+                                     
+                                 solde = solde.add(ligneEcritureComptable.getDebit());
+                                 
+                                 }
+                                 
+                                 //Idem pour le crédit de l'écriture comptable
+                                 // si le crédit de la ligne de l'écriture n'est pas égale à null
+                                 //alors soustraire le montant du crédit à la variable solde
+                                 if (ligneEcritureComptable.getCredit() != null) {
+                                     
+                                 solde = solde.subtract(ligneEcritureComptable.getCredit());
+                                     
+                                     
+                                     
+                                     
+                                 }
+                                     
+                                 }
+                                 }         
+
+                                 // retourner la valeur de l'écriture comptable Débit - Crédit
+                                 return solde;
+                                 
+                                 }
+                                 
+                                 }
         
                    
         
 
-                                 }
     
     
 
