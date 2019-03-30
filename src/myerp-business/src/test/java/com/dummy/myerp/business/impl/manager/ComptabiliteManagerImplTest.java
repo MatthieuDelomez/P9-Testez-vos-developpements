@@ -24,6 +24,8 @@ import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 
 import com.dummy.myerp.technical.exception.FunctionalException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 
@@ -65,15 +67,28 @@ public class ComptabiliteManagerImplTest {
      
      
      //********************************************************************************************//
+     
 
-
+    /*
+     Méthode de test d'une écriture comptable avec sa référence correcte
+     @throws Exception
+     */
     @Test
     public void checkEcritureComptableUnit() throws Exception {
         
         EcritureComptable vEcritureComptable;
         vEcritureComptable = new EcritureComptable();
         vEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
-        vEcritureComptable.setDate(new Date());
+        
+        //Ajout d'un Calendar
+        Calendar calendar = new GregorianCalendar(2019, 1, 1);
+        
+        //On set la date au calendar
+        vEcritureComptable.setDate(calendar.getTime());
+        
+        //On ajoute la référence à l'écriture comptable
+        vEcritureComptable.setReference("AC-2019/00001");
+        
         vEcritureComptable.setLibelle("Libelle");
         
         vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),  null, new BigDecimal(123), null));

@@ -20,6 +20,8 @@ import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -389,6 +391,8 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
             getDaoProxy().getComptabiliteDao().updateEcritureComptable(pEcritureComptable);
             getTransactionManager().commitMyERP(vTS);
             vTS = null;
+        } catch (NotFoundException ex) {
+            Logger.getLogger(ComptabiliteManagerImpl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             getTransactionManager().rollbackMyERP(vTS);
         }

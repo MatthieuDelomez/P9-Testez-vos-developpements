@@ -431,31 +431,7 @@ import java.util.GregorianCalendar;
                                             //************************************************************************************************************/
                                             
                                             
-                                            /*
-                                            Création de la méthode tqui va tester la taille de la liste attendu pour la ligne EcritureComptable
-                                            
-                                            @Test
-                                            public void getListEcritureComptableByCompteTest() {
-                                                
-                                            List<LigneEcritureComptable> listeEcriture;
-                                            
-                                            //Banque
-                                            listeEcriture = dao.getListLigneEcritureComptableByCompte(512);
-                                            
-                                            assertTrue("Nous allons tester la taille de la liste générée et qui sera attendu en Ligne d'écriture ", listeEcriture.size() == 2);
-
-                                            
-                                            //Nettoyage de la liste
-                                            listeEcriture.clear();
-                                            
-                                            
-                                            //Client
-                                            listeEcriture = dao.getListLigneEcritureComptableByCompte(411);
-                                            
-                                            assertTrue("Nous allons tester la taille de la liste générée et qui sera attendu en Ligne d'écriture ", listeEcriture.size() == 3);
-                                            
-                                            
-                                            }*/
+                                        
                                                                                         
                                             }
                                             
