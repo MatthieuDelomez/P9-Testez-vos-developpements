@@ -23,13 +23,14 @@ import com.dummy.myerp.technical.exception.NotFoundException;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
 @ActiveProfiles(profiles="test")
-
+@Transactional
  public class TestComptabilite {
     
     

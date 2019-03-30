@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Stream;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -30,9 +31,13 @@ import static org.hamcrest.CoreMatchers.is;
 public class IntegrationComptabiliteManagerImpl {
     
     
+    //********************************************************************************************//
     
     //Import de la classe ComptabiliteManagerImpl
     private ComptabiliteManagerImpl comptaManager = new ComptabiliteManagerImpl();
+    
+    
+    //********************************************************************************************//
     
     
     /*
@@ -87,7 +92,7 @@ public class IntegrationComptabiliteManagerImpl {
        //Insertion d'une écrite fausse
        ecritureComptable.getListLigneEcriture().clear();
        
-       ecritureComptable.setReference("AC-2019/00002");
+       ecritureComptable.setReference("AC-2019/00001");
        
        ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(401), null, new BigDecimal("123.42"),  null));
        
@@ -106,7 +111,73 @@ public class IntegrationComptabiliteManagerImpl {
        }
 
         
-    }
+       }
+    
+    
+    //********************************************************************************************//
+    
+    
+       /*
+       Intégration de la méthode update
+       @ throws FunctionalException
+       */
+        @Test
+        public void updateEcritureTest() throws FunctionalException {
+            
+        //Récupérations des écritures sous formes de liste
+        List <EcritureComptable> listeEcritureCompta = comptaManager.getListEcritureComptable();
+        
+        EcritureComptable ecritureComptable;
+        
+        //Modification d'une écriture de manière correcte [Changement de reference]
+        Stream<EcritureComptable> sp = listeEcritureCompta.stream();
+        
+        ecritureComptable = sp.filter(o -> o.getReference().equals("AC-2016/00001")).findFirst().get();
+        ecritureComptable.setReference("AC-2016/00002");
+        
+        //On met à jour l'écriture
+        comptaManager.updateEcritureComptable(ecritureComptable);
+        
+        //Et nous récupérons la liste une fois cette dernière Maj
+        listeEcritureCompta.clear();
+        
+        listeEcritureCompta = comptaManager.getListEcritureComptable();
+        
+        assertTrue("Vérification que la nouvelle écriture est bien en db", listeEcritureCompta.stream().filter(o -> o.getReference().equals("AC-2016/00002")).findFirst().isPresent());
+        assertFalse("Vérification que l'ancienne écriture n'est plus en db", listeEcritureCompta.stream().filter(o -> o.getReference().equals("AC-2016/00001")).findFirst().isPresent());
+        
+        
+        //Nous modifions une écriture éronnée
+        sp = listeEcritureCompta.stream();
+        
+        ecritureComptable = sp.filter(o -> o.getReference().equals("AC-2016/00002")).findFirst().get();
+        ecritureComptable.getListLigneEcriture().clear();
+        
+        //Nous settons la reference
+        ecritureComptable.setReference("AC-2019/00001");
+        ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(401), null, new BigDecimal("123.42"), null));
+        
+        ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(512),  null, null, new BigDecimal("123.41")));
+        
+        
+        try {
+            
+        comptaManager.updateEcritureComptable(ecritureComptable);
+        
+        fail("Exception attendu ! ");
+        
+        } catch (FunctionalException exception) {
+            
+       assertThat(exception.getMessage(), is("L'écriture comptable n'est pas équilibrée"));
+            
+            
+        }
+            
+        }
+        
+        
+        
+        
     
     
 }
