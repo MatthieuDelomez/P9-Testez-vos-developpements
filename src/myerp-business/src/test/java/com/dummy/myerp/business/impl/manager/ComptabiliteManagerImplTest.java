@@ -22,10 +22,15 @@ import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
+import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 
 import com.dummy.myerp.technical.exception.FunctionalException;
+import com.dummy.myerp.technical.exception.NotFoundException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import static org.junit.Assert.assertTrue;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.doNothing;
 
 
 
@@ -54,7 +59,7 @@ public class ComptabiliteManagerImplTest {
      Configuration en Amont du Test via l'annotation Before :
      - Mocking du Dao
      - Mocking de la transactionManager
-     */
+     
      @Before
      public void Config() {
          
@@ -64,7 +69,7 @@ public class ComptabiliteManagerImplTest {
      when(this.transactionManagerMocking.beginTransactionMyERP()).thenReturn(null);
          
      }
-     
+     */
      
      //********************************************************************************************//
      
@@ -101,7 +106,11 @@ public class ComptabiliteManagerImplTest {
         }
     
     
-
+    /*
+    [Exception attendue]
+    Méthode qui sert à générée une exception si l'écriture est vide
+    @throws Exception
+    */
     @Test(expected = FunctionalException.class)
     public void checkEcritureComptableUnitViolation() throws Exception {
         
@@ -113,7 +122,10 @@ public class ComptabiliteManagerImplTest {
          }
     
     
-
+    /*
+    Exception générée si l'écriture n'est pas équilibrée
+    @throws Exception
+    */
     @Test(expected = FunctionalException.class)
     public void checkEcritureComptableUnitRG2() throws Exception {
         
@@ -132,7 +144,10 @@ public class ComptabiliteManagerImplTest {
     }
     
     
-
+     /*
+    Exception générée si deux ecritures comptables son insérées avec de montant Débit
+    @throws Exception
+    */
     @Test(expected = FunctionalException.class)
     public void checkEcritureComptableUnitRG3() throws Exception {
         
@@ -151,5 +166,8 @@ public class ComptabiliteManagerImplTest {
         
         
          }
+    
+    
+      
 
          }
