@@ -7,6 +7,7 @@ import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -175,6 +176,42 @@ public class IntegrationComptabiliteManagerImpl {
             
         }
         
+        
+        //********************************************************************************************//
+        
+        /*
+        Integration de la methode getSoldetest
+        méthode qui nous servira à récupérer le solde d'un compte
+        */
+        @Test
+        public void getSoldeTest() {
+            
+       //Test d'un compte débiteur
+       BigDecimal solde = this. comptaManager.getSoldeComptable(512); // Banque
+       
+       BigDecimal resltAttendu = new BigDecimal("2500");
+       
+      assertTrue(solde.toString() + " " + resltAttendu.toString(), solde.compareTo(resltAttendu) == 0);
+      
+      
+      //Test d'un compte créditeur
+      solde = this.comptaManager.getSoldeComptable(706); // Prestation de services
+      
+      resltAttendu = new BigDecimal("-7000");
+      
+      assertTrue(solde.toString() + " " + resltAttendu.toString(), solde.compareTo(resltAttendu) == 0);
+      
+      
+      
+      //Test d'un compte nul ou non existant
+      solde = this.comptaManager.getSoldeComptable(201); // Compte non existant
+      
+      resltAttendu = new BigDecimal("0");
+      
+      assertTrue(solde.toString() + " " + resltAttendu.toString(), solde.compareTo(resltAttendu) == 0);
+      
+            
+        }
         
         
         
