@@ -5,7 +5,9 @@ import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
+import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
+import com.dummy.myerp.technical.exception.NotFoundException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Calendar;
@@ -212,6 +214,49 @@ public class IntegrationComptabiliteManagerImpl {
       
             
         }
+        
+        
+       
+        @Test
+         public void checkRefTest () throws NotFoundException {
+             
+         EcritureComptable ecritureComptable;
+         ecritureComptable = new EcritureComptable();
+         ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+         Calendar calendar = new GregorianCalendar(2016,1,1);
+         ecritureComptable.setDate(calendar.getTime());
+         ecritureComptable.setLibelle("Libelle");
+                
+                
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(401),null, new BigDecimal(123),null));
+                
+                
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2),null, null, new BigDecimal(512)));
+           
+           this.comptaManager.addReference(ecritureComptable);
+           
+            SequenceEcritureComptable lastSequence = this.comptaManager.getLastSequence(ecritureComptable);
+            
+            
+            //Vérification de la dernière séquence +1 par rapport à celle en base de données
+            assertTrue("sequence existante :"+ ecritureComptable.toString(), ecritureComptable.getReference().equals("AC-2016/00041"));
+            assertTrue("sequence mise a jour en db sur existante", lastSequence.getAnnee()==2016&&lastSequence.getDerniereValeur()==41);
+            
+            calendar.set(2019, 1, 1);
+            ecritureComptable.setDate(calendar.getTime());
+            
+            this.comptaManager.addReference(ecritureComptable);
+            
+            
+            //Vérification d'une sequence non existante dont la  reference est egale à 1
+            assertTrue("sequence non existante" + ecritureComptable.toString(), ecritureComptable.getReference().equals("AC-2018/00001"));
+            lastSequence = this.comptaManager.getLastSequence(ecritureComptable);
+            
+            
+           assertTrue("Séquence mise à jour en bd sur non existante",lastSequence.getAnnee()==2018&&lastSequence.getDerniereValeur()==1);
+
+             
+         }
         
         
         

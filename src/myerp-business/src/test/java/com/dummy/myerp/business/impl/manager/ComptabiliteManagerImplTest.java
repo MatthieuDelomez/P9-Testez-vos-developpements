@@ -376,6 +376,35 @@ public class ComptabiliteManagerImplTest {
                
                
            }
+          
+          
+          /*
+          Vérification que l'exception est bien générée si nous avons une ligne d'écriture à plus de 2 chiffres apres la virgule
+          @throws Exception
+          */
+          @Test(expected = FunctionalException.class)
+          public void checkEcritureComptableUnitRG7() throws FunctionalException {
+              
+              
+           EcritureComptable ecritureComptable;
+           ecritureComptable = new EcritureComptable();
+           ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           Calendar calendar = new GregorianCalendar(2019,1,1);
+           
+           ecritureComptable.setDate(calendar.getTime());
+           ecritureComptable.setLibelle("Libelle");
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),null, new BigDecimal("123.124"), null));
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal("123.124")));
+           
+           ecritureComptable.setReference("AC-2019/00123");
+           manager.checkEcritureComptableUnit(ecritureComptable);
+              
+          }
+          
         
            
           }

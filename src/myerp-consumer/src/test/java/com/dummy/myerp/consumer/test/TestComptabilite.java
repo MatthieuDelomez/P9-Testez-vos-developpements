@@ -30,7 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
 @ActiveProfiles(profiles="test")
-@Transactional
  public class TestComptabilite {
     
     
@@ -44,7 +43,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
 	                      * Vérification de l'obtention de la liste des écritures comptables
-                                            */
+                                            
 	                      @Test
 	                      public void getListEcritureComptableTest() {
             
@@ -64,7 +63,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Création de la méthode pour récupérer une écriture comptable par ID
                                             @throws NotFoundException
-                                           */
+                                           
                                             @Test
                                             public void getEcritureComptableWithIdTest() throws NotFoundException {
                          
@@ -87,10 +86,10 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                            
                                             
-                                            /*
-                                            Nous allons tester avec une écriture comptable qui n'existe pas
-                                            Exception attendue
-                                           */
+                                            
+                                            //Nous allons tester avec une écriture comptable qui n'existe pas
+                                            //Exception attendue
+                                           
                                             Id = 35;
                                             
                                             try {
@@ -133,7 +132,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
                                             Création de la méthode Test pour vérifier les valeurs des journaux comptable
-                                           */
+                                           
                                             @Test
                                             public void getListJournalComptaTest() {
                                                 
@@ -142,9 +141,9 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             listeJournaux = dao.getListJournalComptable();
                                             
-                                            /*
-                                            Vérification de la taille de la liste des journaux |  Test si le journal existe [AC]
-                                            */
+                                            
+                                            //Vérification de la taille de la liste des journaux |  Test si le journal existe [AC]
+                                            
                                         
                                             // La taille de la liste est bien égale à 4
                                             assertTrue("Nous allons tester la liste attendu, si elle correspond bien à la taille donnée", listeJournaux.size() ==  4 );
@@ -162,12 +161,14 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
                                             Création de la methode qui va tester la requête Sql InsertEcriture 
-                                           */
+                                           
                                             @Test
                                             public void insertSqlEcritureTest() throws FunctionalException, NotFoundException{
                                                 
                                                 
                                             EcritureComptable ecritureComptable;
+                                            
+                                          
                                             
                                             //Création d'une variable écriture comptable
                                             ecritureComptable = new EcritureComptable();
@@ -213,12 +214,12 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
                                             // Référence de l'écriture
-                                            Integer Id = -1;
+                                            Integer Id = 6;
                                             
                                             EcritureComptable testEcriture;
                                             
@@ -266,7 +267,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                           */
+                                            
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
@@ -297,7 +298,7 @@ import org.springframework.transaction.annotation.Transactional;
 
                                             /*
                                             Création de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
-                                            */
+                                            
                                             @Test
                                             public void getEcritureComptableByReferenceTest() {
 
@@ -341,7 +342,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void getLastSequenceTest() throws NotFoundException {
                                                 
@@ -399,7 +400,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 
