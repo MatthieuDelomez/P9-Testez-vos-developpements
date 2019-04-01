@@ -59,7 +59,7 @@ public class ComptabiliteManagerImplTest {
      Configuration en Amont du Test via l'annotation Before :
      - Mocking du Dao
      - Mocking de la transactionManager
-     
+     */
      @Before
      public void Config() {
          
@@ -69,7 +69,7 @@ public class ComptabiliteManagerImplTest {
      when(this.transactionManagerMocking.beginTransactionMyERP()).thenReturn(null);
          
      }
-     */
+     
      
      //********************************************************************************************//
      
@@ -166,6 +166,40 @@ public class ComptabiliteManagerImplTest {
         
         
          }
+    
+    
+    
+         /*
+         Méthode qui va permettre de vérifier un montant négatif sur une écriture compùtable
+         */
+          @Test
+          public void checkEcritureComptableUnitRG4() throws Exception {
+              
+           EcritureComptable ecritureComptable;
+           
+           ecritureComptable = new EcritureComptable();
+           
+           ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           
+           Calendar calendar = new GregorianCalendar(2019, 1, 1);
+           
+           ecritureComptable.setDate(calendar.getTime());
+           
+           ecritureComptable.setLibelle("Libelle");
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal("-12"),  null));
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal("15"), null));
+        
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal("3")));
+           
+           
+           ecritureComptable.setReference("AC-2019/00123");
+           
+           manager.checkEcritureComptableUnit(ecritureComptable);
+           
+           }
     
     
       
