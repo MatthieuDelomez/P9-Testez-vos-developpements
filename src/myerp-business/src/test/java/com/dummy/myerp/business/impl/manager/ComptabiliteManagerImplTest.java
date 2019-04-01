@@ -195,11 +195,40 @@ public class ComptabiliteManagerImplTest {
            ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal("3")));
            
            
-           ecritureComptable.setReference("AC-2019/00123");
+           ecritureComptable.setReference("AC-2019/00001");
            
            manager.checkEcritureComptableUnit(ecritureComptable);
            
            }
+          
+          
+          
+          /*
+          Verification qu'une exception est lancée si le journal ne correspond pas à la reference de l'ecriture
+          @throws Exception
+          */
+          @Test(expected = FunctionalException.class)
+          public void  checkEcritureComptableUnitRG5Journal() throws Exception {
+              
+              
+           EcritureComptable ecritureComptable;
+           
+           ecritureComptable = new EcritureComptable();
+           ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           ecritureComptable.setDate(new Date());
+           ecritureComptable.setLibelle("Libelle");
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),null, new BigDecimal(123), null));
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(123)));
+           
+           ecritureComptable.setReference("BQ-2018/00123");
+           
+           manager.checkEcritureComptableUnit(ecritureComptable);
+                      
+                     
+          }
     
     
       
