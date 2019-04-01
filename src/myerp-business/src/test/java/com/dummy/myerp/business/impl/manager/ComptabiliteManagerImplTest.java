@@ -106,6 +106,9 @@ public class ComptabiliteManagerImplTest {
         }
     
     
+    //********************************************************************************************/
+    
+    
     /*
     [Exception attendue]
     Méthode qui sert à générée une exception si l'écriture est vide
@@ -120,6 +123,9 @@ public class ComptabiliteManagerImplTest {
         manager.checkEcritureComptableUnit(vEcritureComptable);
         
          }
+    
+    
+     //********************************************************************************************/
     
     
     /*
@@ -144,6 +150,9 @@ public class ComptabiliteManagerImplTest {
     }
     
     
+    //********************************************************************************************/
+    
+    
      /*
     Exception générée si deux ecritures comptables son insérées avec de montant Débit
     @throws Exception
@@ -166,6 +175,9 @@ public class ComptabiliteManagerImplTest {
         
         
          }
+    
+    
+    //********************************************************************************************/
     
     
     
@@ -202,6 +214,8 @@ public class ComptabiliteManagerImplTest {
            }
           
           
+          //********************************************************************************************/
+          
           
           /*
           Verification qu'une exception est lancée si le journal ne correspond pas à la reference de l'ecriture
@@ -229,6 +243,36 @@ public class ComptabiliteManagerImplTest {
                       
                      
           }
+          
+          
+          //********************************************************************************************/
+          
+          
+          
+          /*
+          Vérification qu'une exception est générée si la date de l'écriture ne correspond pas à la reference
+          @throws Exception
+          */
+          @Test(expected = FunctionalException.class)
+          public void checkEcritureComptableRG5Date() throws Exception {
+              
+           EcritureComptable ecritureComptable;
+           ecritureComptable = new EcritureComptable();
+           ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           Calendar calendar = new GregorianCalendar(2019, 1, 1);
+           ecritureComptable.setDate(calendar.getTime());
+           ecritureComptable.setLibelle("Libelle");
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123),null));
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal(123)));
+           
+           ecritureComptable.setReference("AC-2017/001236");
+           manager.checkEcritureComptableUnit(ecritureComptable);
+           
+           }
     
     
       
