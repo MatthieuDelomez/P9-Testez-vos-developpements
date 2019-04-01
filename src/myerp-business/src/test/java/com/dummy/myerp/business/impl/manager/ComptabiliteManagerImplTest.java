@@ -2,35 +2,31 @@ package com.dummy.myerp.business.impl.manager;
 
 
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.runner.RunWith;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.dummy.myerp.business.impl.TransactionManager;
-
 import com.dummy.myerp.consumer.dao.contrat.DaoProxy;
 import com.dummy.myerp.consumer.dao.impl.db.dao.ComptabiliteDaoImpl;
-
 import com.dummy.myerp.model.bean.comptabilite.CompteComptable;
 import com.dummy.myerp.model.bean.comptabilite.EcritureComptable;
 import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
-import com.dummy.myerp.model.bean.comptabilite.SequenceEcritureComptable;
-
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import static org.junit.Assert.assertTrue;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doNothing;
 
 
 
@@ -273,8 +269,117 @@ public class ComptabiliteManagerImplTest {
            manager.checkEcritureComptableUnit(ecritureComptable);
            
            }
+          
+          
+           //********************************************************************************************/
+          
+          
+           /*
+          Vérification qu'une erreur est générée si la reference n'est pas unique
+          @throws Exception
+          */
+          @Test
+          public void checkEcritureComptableCtxtRG6() throws Exception {
+              
+           //Ecriture que nous allons tester
+           EcritureComptable ecritureComptable;
+           ecritureComptable = new EcritureComptable();
+           
+           ecritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           Calendar calendar = new GregorianCalendar(2019,1,1);
+           ecritureComptable.setDate(calendar.getTime());
+           ecritureComptable.setLibelle("Libelle");
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),null, new BigDecimal("123.124"),null));
+           
+           
+           ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal("123.124")));
+           
+           ecritureComptable.setReference("AC-2019/000123");
+           
+           
+           //Ecriture comptable de la Dao que nous allons mocker avec la même reference
+           EcritureComptable daoEcritureComptable;
+           
+           daoEcritureComptable = new EcritureComptable();
+           
+           daoEcritureComptable.setId(12);
+           
+           daoEcritureComptable.setJournal(new JournalComptable("AC", "Achat"));
+           
+           Calendar calendar2 = new GregorianCalendar(2019,1,1);
+           
+           daoEcritureComptable.setDate(calendar2.getTime());
+           
+           daoEcritureComptable.setLibelle("Libelle");
+           
+           
+           
+          daoEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),null, new BigDecimal("123.124"),null));
+          
+          
+           daoEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal("123.124")));
+           
+           
+           daoEcritureComptable.setReference("AC-2019/000123");
+           
+           
+           when(this.comptaDaoMocking.getEcritureComptableByRef(ecritureComptable.getReference())).thenReturn(daoEcritureComptable); 
+           
+           
+           //Création d'un bloc try / catch qui va lever une exception si une reference commune est insérer sur une écriture
+           // [ID : null]
+           try {
+               
+           manager.checkEcritureComptableContext(ecritureComptable);
+           
+           fail("Une Exception est attendu !");
+           
+           } catch (FunctionalException exception) {
+               
+           assertThat(exception.getMessage(), is("Une autre écriture comptable existe avecc la même référence"));
+           
+           
+           }
+           
+           
+           
+           //Functional Exception levée si nous avons la même référence et un Id differents
+           ecritureComptable.setId(13);
+           try {
+               
+           manager.checkEcritureComptableContext(ecritureComptable);
+           
+           fail("Exception attendu !");
+           
+           } catch(FunctionalException exception) {
+               
+           assertThat(exception.getMessage(), is("Une autre écriture comptable existe avec la même reference"));
+           
+           }
+           
+           
+           
+           //Nous allons vérifier si il n'y a pas d'erreur si nous avons le même Id
+           ecritureComptable.setId(12);
+           manager.checkEcritureComptableContext(ecritureComptable);
+           
+           
+           //Vérification de la reference non trouvée 
+           daoEcritureComptable = null;
+           when(this.comptaDaoMocking.getEcritureComptableByRef(ecritureComptable.getReference())).thenThrow(NotFoundException.class); 
+        
+           ecritureComptable.setId(0);
+           manager.checkEcritureComptableContext(ecritureComptable);
+               
+               
+               
+               
+           }
+        
+           
+          }
     
     
       
 
-         }
