@@ -23,7 +23,6 @@ import com.dummy.myerp.technical.exception.NotFoundException;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -43,7 +42,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
 	                      * Vérification de l'obtention de la liste des écritures comptables
-                                            
+                                            */
 	                      @Test
 	                      public void getListEcritureComptableTest() {
             
@@ -63,7 +62,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Création de la méthode pour récupérer une écriture comptable par ID
                                             @throws NotFoundException
-                                           
+                                           */
                                             @Test
                                             public void getEcritureComptableWithIdTest() throws NotFoundException {
                          
@@ -132,7 +131,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
                                             Création de la méthode Test pour vérifier les valeurs des journaux comptable
-                                           
+                                           */
                                             @Test
                                             public void getListJournalComptaTest() {
                                                 
@@ -161,7 +160,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
                                             Création de la methode qui va tester la requête Sql InsertEcriture 
-                                           
+                                           */
                                             @Test
                                             public void insertSqlEcritureTest() throws FunctionalException, NotFoundException{
                                                 
@@ -214,7 +213,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
@@ -267,7 +266,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
@@ -277,13 +276,13 @@ import org.springframework.transaction.annotation.Transactional;
                                             testEcritureUpdate = dao.getEcritureComptable(-1);
                                             
                                             // Nous définissions la nouvelle référence
-                                            testEcritureUpdate.setReference("AC-2019/00001");
+                                            testEcritureUpdate.setReference("AB-2019/00001");
                                             
                                             dao.updateEcritureComptable(testEcritureUpdate);
                                             
                                             EcritureComptable testEcritureToMAJ;
                                             
-                                            testEcritureToMAJ = dao.getEcritureComptableByRef("AC-2019/00001");
+                                            testEcritureToMAJ = dao.getEcritureComptableByRef("AB-2019/00001");
                                             
                                             
                                             // On vérifie si l'update à bien été fonctionnel sur la ligne que nous avons défini
@@ -298,7 +297,7 @@ import org.springframework.transaction.annotation.Transactional;
 
                                             /*
                                             Création de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
-                                            
+                                            */
                                             @Test
                                             public void getEcritureComptableByReferenceTest() {
 
@@ -342,7 +341,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void getLastSequenceTest() throws NotFoundException {
                                                 
@@ -400,7 +399,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 

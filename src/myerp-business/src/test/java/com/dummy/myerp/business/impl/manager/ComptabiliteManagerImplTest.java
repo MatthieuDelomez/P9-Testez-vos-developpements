@@ -27,6 +27,7 @@ import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
+import org.mockito.Mockito;
 
 
 
@@ -38,10 +39,10 @@ public class ComptabiliteManagerImplTest {
     private ComptabiliteManagerImpl manager = new ComptabiliteManagerImpl();
     
     //Nous allons mocker le proxy Dao
-     private DaoProxy daoProxyMocking = mock(DaoProxy.class);
+     private DaoProxy daoProxyMocking = mock(DaoProxy.class, Mockito.CALLS_REAL_METHODS);
      
      //Mocking du transaction manager
-     private TransactionManager transactionManagerMocking = mock(TransactionManager.class);
+     private TransactionManager transactionManagerMocking = mock(TransactionManager.class, Mockito.CALLS_REAL_METHODS);
     
      //Mocking de la classe ComptaDao
      private ComptabiliteDaoImpl comptaDaoMocking = mock(ComptabiliteDaoImpl.class);
@@ -277,7 +278,7 @@ public class ComptabiliteManagerImplTest {
            /*
           Vérification qu'une erreur est générée si la reference n'est pas unique
           @throws Exception
-          */
+          
           @Test
           public void checkEcritureComptableCtxtRG6() throws Exception {
               
