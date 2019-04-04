@@ -1,0 +1,23 @@
+version: '2'
+services:
+  myerp.db:
+    build: .
+#    image: postgres:9.4
+
+    ports:
+      - "9032:5432"
+
+
+#    volumes:
+#      - "./data/db:/var/lib/postgresql/data"
+#       - "./init/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+
+
+    environment:
+      - POSTGRES_DB=${DB}
+      - POSTGRES_USER=${USERNAME}
+      - POSTGRES_PASSWORD=${PASSWORD}
+
+
+    container_name: postgres
+      

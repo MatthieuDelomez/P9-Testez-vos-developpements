@@ -45,19 +45,10 @@
     <import resource="sqlContext.xml"/>
 
 
-<<<<<<< HEAD
-    <!-- ==================== Databases ==================== -->
-<bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/db_myerp" />
-		<property name="username" value="usr_myerp" />
-		<property name="password" value="myerp" />
-=======
    <!-- ==================== Databases ==================== -->
     <!-- EN DEVELOPPEMENT -->
     <beans profile="dev">
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
     </bean>
     
     
@@ -77,11 +68,6 @@
 </beans>
 
 
-<<<<<<< HEAD
-    <!-- ========== SQL ========== -->
-    <import resource="sqlContext.xml"/>
-</beans>
-=======
     
 
 <!-- Profil d'intégration -->
@@ -117,4 +103,3 @@
     
     
     </beans>
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
