@@ -40,24 +40,22 @@
     <bean id="DaoProxy" class="com.dummy.myerp.consumer.dao.impl.DaoProxyImpl" factory-method="getInstance">
         <property name="comptabiliteDao" ref="ComptabiliteDaoImpl"/>
     </bean>
-
-
-    <!-- ==================== Databases ==================== -->
-    <bean id="dataSourceMYERP"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        
-        <property name="url" value="jdbc:postgresql://localhost:5432/testUnitaire" />
-        
-        <property name="username" value="postgres" />
-        <property name="password" value="root" />
-    </bean>
-
-
+    
     <!-- ========== SQL ========== -->
     <import resource="sqlContext.xml"/>
-</beans>
-    
-    
-    
 
+
+
+    
+    
+    <bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://127.0.0.1:9032/db_myerp" />
+		<property name="username" value="usr_myerp" />
+		<property name="password" value="myerp" />
+    
+    
+    </bean>
+
+    
+    </beans>
