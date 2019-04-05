@@ -45,22 +45,10 @@
     <import resource="sqlContext.xml"/>
 
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-    <!-- ==================== Databases ==================== -->
-<bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/db_myerp" />
-		<property name="username" value="usr_myerp" />
-		<property name="password" value="myerp" />
-=======
    <!-- ==================== Databases ==================== -->
     <!-- EN DEVELOPPEMENT -->
     <beans profile="dev">
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
     </bean>
     
     
@@ -80,30 +68,11 @@
 </beans>
 
 
-<<<<<<< HEAD
-    <!-- ========== SQL ========== -->
-    <import resource="sqlContext.xml"/>
-</beans>
-=======
->>>>>>> 6c3c40491fab7d6ac9c4f672f8b82e54784ea1f7
     
 
 <!-- Profil d'intégration -->
 <beans profile="test">
     
-<<<<<<< HEAD
-    <bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://127.0.0.1:9032/db_myerp" />
-		<property name="username" value="usr_myerp" />
-		<property name="password" value="myerp" />
-    
-    
-    </bean>
-
-    
-    </beans>
-=======
     <!-- Configuration des fichiers properties à récupérer -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
@@ -134,5 +103,3 @@
     
     
     </beans>
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
->>>>>>> 6c3c40491fab7d6ac9c4f672f8b82e54784ea1f7
