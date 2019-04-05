@@ -45,53 +45,9 @@
     <import resource="sqlContext.xml"/>
 
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-    <!-- ==================== Databases ==================== -->
-<bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/db_myerp" />
-		<property name="username" value="usr_myerp" />
-		<property name="password" value="myerp" />
-=======
-   <!-- ==================== Databases ==================== -->
-    <!-- EN DEVELOPPEMENT -->
-    <beans profile="dev">
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
-    </bean>
     
     
-    <bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost:5432/db_myerp" />
-		<property name="username" value="postgres" />
-		<property name="password" value="root" />
-    
-    
-    </bean>
-    
-    <!-- PlatformTransactionManager pour le DataSource MYERP -->
-    <bean id="txManagerMYERP" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSourceMYERP"/>
-    </bean>
-</beans>
-
-
-<<<<<<< HEAD
-    <!-- ========== SQL ========== -->
-    <import resource="sqlContext.xml"/>
-</beans>
-=======
->>>>>>> 6c3c40491fab7d6ac9c4f672f8b82e54784ea1f7
-    
-
-<!-- Profil d'intégration -->
-<beans profile="test">
-    
-<<<<<<< HEAD
     <bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://127.0.0.1:9032/db_myerp" />
@@ -103,36 +59,3 @@
 
     
     </beans>
-=======
-    <!-- Configuration des fichiers properties à récupérer -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-    <property name="locations">
-        <list>
-            <value>classpath:/com/dummy/myerp/consumer/db.properties</value>
-        </list>
-    </property>
-    </bean>
-    
-    
-    
-    <bean id="dataSourceMYERP" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-                 <property name="driverClassName" value="${db.connection.driver.class}"/>
-                 <property name="url" value="${db.connection.url}"/>
-                 <property name="username" value="${db.connection.username}"/>
-                 <property name="password" value="${db.connection.password}"/>
-                 
-    </bean>
-    
-    
-    <!-- Appel au TransactionManager pour la datasource MYERP -->
-    <bean id="txManagerMYERP" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-                 <property name="dataSource" ref="dataSourceMYERP"/>
-   
-    </bean>
-    </beans>
-    
-    
-    
-    </beans>
->>>>>>> 0fad7afbc7ff16d2e93b7cffbbfcff945195d655
->>>>>>> 6c3c40491fab7d6ac9c4f672f8b82e54784ea1f7
