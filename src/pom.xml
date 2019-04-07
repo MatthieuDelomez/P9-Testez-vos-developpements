@@ -62,12 +62,7 @@
     <!-- =============================================================== -->
     <!-- Modules -->
     <!-- =============================================================== -->
-    <modules>
-        <module>myerp-technical</module>
-        <module>myerp-model</module>
-        <module>myerp-consumer</module>
-        <module>myerp-business</module>
-    </modules>
+    <modules></modules>
 
 
     <!-- =============================================================== -->
