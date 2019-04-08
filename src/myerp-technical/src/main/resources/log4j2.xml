@@ -9,5 +9,12 @@
         <Root level="WARN">
             <AppenderRef ref="console"/>
         </Root>
+        
+        <logger name="org.springframework.jdbc.core">
+  		<level value="trace" />
+  		 <appender-ref ref="console" />
+		</logger>
+
+
     </Loggers>
 </Configuration>

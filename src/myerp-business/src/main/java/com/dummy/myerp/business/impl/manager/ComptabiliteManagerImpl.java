@@ -262,7 +262,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         // ===== RG_Compta_2 : Pour qu'une écriture comptable soit valide, elle doit être équilibrée
         //Comme modification de la méthode isEquilibree en Integer ==> Ajout de la valeur  [!=0] 
         //Car si le methode ne retourn pas 0 alors l'écriture comptable n'est 
-        if (pEcritureComptable.isEquilibree() != 0) {
+        if (pEcritureComptable.isEquilibree()) {
             throw new FunctionalException("L'écriture comptable n'est pas équilibrée.");
         }
         
@@ -386,6 +386,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
      */
     @Override
     public void updateEcritureComptable(EcritureComptable pEcritureComptable) throws FunctionalException {
+    	this.checkEcritureComptable(pEcritureComptable);
         TransactionStatus vTS = getTransactionManager().beginTransactionMyERP();
         try {
             getDaoProxy().getComptabiliteDao().updateEcritureComptable(pEcritureComptable);
@@ -397,6 +398,7 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
             getTransactionManager().rollbackMyERP(vTS);
         }
     }
+
 
     /**
      * {@inheritDoc}
