@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b22d1891cdd2999c4100e0063da5c2c3b26db45
 package com.dummy.myerp.model.bean.comptabilite;
 
 import java.util.ArrayList;
@@ -35,4 +39,8 @@ public class CompteComptableTest {
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("banque"));
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8b22d1891cdd2999c4100e0063da5c2c3b26db45
