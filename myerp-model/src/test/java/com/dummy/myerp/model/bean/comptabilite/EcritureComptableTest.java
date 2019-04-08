@@ -88,5 +88,8 @@ public class EcritureComptableTest {
         }
 
     
+<<<<<<< HEAD:myerp-model/src/test/java/com/dummy/myerp/model/bean/comptabilite/EcritureComptableTest.java
 
+=======
+>>>>>>> 695dacd54f1be4e1d9152e8e15ea9567c5c24ded:src/myerp-model/src/test/java/com/dummy/myerp/model/bean/comptabilite/EcritureComptableTest.java
 }

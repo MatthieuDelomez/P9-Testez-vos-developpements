@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8b22d1891cdd2999c4100e0063da5c2c3b26db45
 package com.dummy.myerp.model.bean.comptabilite;
 
 import java.util.ArrayList;
@@ -52,4 +55,13 @@ public class JournalTest {
         
 
     }
+<<<<<<< HEAD:myerp-model/src/test/java/com/dummy/myerp/model/bean/comptabilite/JournalTest.java
 }
+=======
+    
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> 8b22d1891cdd2999c4100e0063da5c2c3b26db45
+>>>>>>> 695dacd54f1be4e1d9152e8e15ea9567c5c24ded:src/myerp-model/src/test/java/com/dummy/myerp/model/bean/comptabilite/JournalTest.java

@@ -30,7 +30,12 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
 @ActiveProfiles(profiles="test")
+<<<<<<< HEAD:myerp-consumer/src/test/java/com/dummy/myerp/consumer/test/TestComptabilite.java
+=======
+@Transactional
+>>>>>>> 695dacd54f1be4e1d9152e8e15ea9567c5c24ded:src/myerp-consumer/src/test/java/com/dummy/myerp/consumer/test/TestComptabilite.java
  public class TestComptabilite {
+    
     
     
                                             /*
@@ -43,6 +48,7 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             /*
 	                      * Vérification de l'obtention de la liste des écritures comptables
+                                            *
                                             */
 	                      @Test
 	                      public void getListEcritureComptableTest() {
@@ -432,8 +438,8 @@ import org.springframework.transaction.annotation.Transactional;
                                             
                                             
                                         
-                                                                                        
-                                            }
+}               
+                                            
                                             
         
         

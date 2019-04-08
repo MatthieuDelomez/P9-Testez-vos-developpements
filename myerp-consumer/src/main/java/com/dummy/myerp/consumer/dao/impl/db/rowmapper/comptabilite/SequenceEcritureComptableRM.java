@@ -14,12 +14,12 @@ public class SequenceEcritureComptableRM implements RowMapper<SequenceEcritureCo
     @Override
     public SequenceEcritureComptable mapRow(ResultSet resultSet, int pRowNum) throws SQLException {
         
-        SequenceEcritureComptable sequenceEcritureComptable = new SequenceEcritureComptable();
+        SequenceEcritureComptable bean = new SequenceEcritureComptable();
         
-        sequenceEcritureComptable.setAnnee(resultSet.getInt("annee"));
-        sequenceEcritureComptable.setDerniereValeur(resultSet.getInt("derniere_valeur"));
+        bean.setAnnee(resultSet.getInt("annee"));
+        bean.setDerniereValeur(resultSet.getInt("derniere_valeur"));
         
-        return sequenceEcritureComptable;
+        return bean;
     }
     
 }

@@ -19,6 +19,7 @@
             <AppenderRef ref="console"/>
 
         </Root>
+<<<<<<< HEAD:myerp-technical/src/main/resources/log4j2.xml
 
         
 
@@ -34,6 +35,15 @@
 
 
 
+=======
+        
+        <logger name="org.springframework.jdbc.core">
+  		<level value="trace" />
+  		 <appender-ref ref="console" />
+		</logger>
+
+
+>>>>>>> 695dacd54f1be4e1d9152e8e15ea9567c5c24ded:src/myerp-technical/src/main/resources/log4j2.xml
     </Loggers>
 
 </Configuration>

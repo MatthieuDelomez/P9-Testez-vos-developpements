@@ -14,7 +14,6 @@ public interface DaoProxy {
     ComptabiliteDao getComptabiliteDao();
     
     
-    
     public void setComptabiliteDao(ComptabiliteDao pComptabiliteDao) ;
 
 }

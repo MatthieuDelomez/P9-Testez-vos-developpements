@@ -165,8 +165,12 @@ public class EcritureComptable {
         
         return vRetour;
     
+<<<<<<< HEAD:myerp-model/src/main/java/com/dummy/myerp/model/bean/comptabilite/EcritureComptable.java
     }
     
+=======
+}
+>>>>>>> 695dacd54f1be4e1d9152e8e15ea9567c5c24ded:src/myerp-model/src/main/java/com/dummy/myerp/model/bean/comptabilite/EcritureComptable.java
     
 
     // ==================== Méthodes ====================
