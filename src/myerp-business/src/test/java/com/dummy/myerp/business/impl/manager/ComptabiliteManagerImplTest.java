@@ -32,7 +32,7 @@ import org.mockito.Mockito;
 
 
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class ComptabiliteManagerImplTest {
     
     
@@ -92,9 +92,9 @@ public class ComptabiliteManagerImplTest {
                       vEcritureComptable.setLibelle("Libelle");
                       
         
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123),null));
+                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123.42),null));
         
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(123)));
+                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(123.42)));
         
                       
                       manager.checkEcritureComptableUnit(vEcritureComptable);
@@ -143,7 +143,7 @@ public class ComptabiliteManagerImplTest {
                       
                       vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123),null));
         
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(123)));
+                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(1235)));
         
                       
                       manager.checkEcritureComptableUnit(vEcritureComptable);

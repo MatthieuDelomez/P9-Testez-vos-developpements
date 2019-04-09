@@ -28,7 +28,6 @@ import java.util.GregorianCalendar;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"/com/dummy/myerp/consumer/applicationContext.xml"})
-@ActiveProfiles(profiles="test")
  public class TestComptabilite {
     
     
@@ -130,7 +129,7 @@ import java.util.GregorianCalendar;
                                             //************************************************************************************************************/
                                             
                                             /*
-                                            Création de la méthode Test pour vérifier les valeurs des journaux comptable
+                                            Création de la méthode Test pour vérifier les valeurs des journaux comptables
                                            */
                                             @Test
                                             public void getListJournalComptaTest() {
