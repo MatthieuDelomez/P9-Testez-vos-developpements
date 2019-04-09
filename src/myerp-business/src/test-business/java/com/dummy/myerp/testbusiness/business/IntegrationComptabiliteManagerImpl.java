@@ -30,7 +30,6 @@ import static org.hamcrest.CoreMatchers.is;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/bootstrapContext.xml"})
 @ActiveProfiles(profiles = "test")
-@Transactional
 public class IntegrationComptabiliteManagerImpl {
     
     
