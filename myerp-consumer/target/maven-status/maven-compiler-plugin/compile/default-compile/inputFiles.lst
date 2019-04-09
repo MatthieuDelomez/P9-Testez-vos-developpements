@@ -1,0 +1,15 @@
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\contrat\ComptabiliteDao.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\rowmapper\comptabilite\SequenceEcritureComptableRM.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\cache\JournalComptableDaoCache.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\ConsumerHelper.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\db\helper\ResultSetHelper.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\cache\CompteComptableDaoCache.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\rowmapper\comptabilite\LigneEcritureComptableRM.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\contrat\DaoProxy.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\DaoProxyImpl.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\dao\ComptabiliteDaoImpl.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\rowmapper\comptabilite\JournalComptableRM.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\rowmapper\comptabilite\EcritureComptableRM.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\db\AbstractDbConsumer.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\dao\impl\db\rowmapper\comptabilite\CompteComptableRM.java
+D:\OP\Testing\myerp-consumer\src\main\java\com\dummy\myerp\consumer\db\DataSourcesEnum.java

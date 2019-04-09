@@ -1,0 +1,5 @@
+com\dummy\myerp\testbusiness\business\BusinessTestCase.class
+com\dummy\myerp\testbusiness\business\ITComptabiliteManagerImpl.class
+com\dummy\myerp\testbusiness\business\ITTestInitSpring.class
+com\dummy\myerp\testbusiness\business\SpringRegistry.class
+com\dummy\myerp\business\impl\manager\ComptabiliteManagerImplTest.class
