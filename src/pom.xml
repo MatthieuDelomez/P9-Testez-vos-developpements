@@ -267,6 +267,16 @@
                 <scope>test</scope>
             </dependency>
             
+            
+            <!-- Ajout de la dependance pour effectuer le coverage via jenkins -->
+          <dependency>
+               <groupId>org.sonarsource.scanner.maven</groupId>
+               <artifactId>sonar-maven-plugin</artifactId>
+               <version>3.6.0.1398</version>
+           </dependency>
+
+            
+            
         </dependencies>
     </dependencyManagement>
 
@@ -411,6 +421,11 @@
                 </plugin>
                 
                 
+                <!-- ===== Plugin 4 Sonar Scanner ===== -->
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                </plugin>
    
 
                 <!-- ===== Aide au constructions particulières ===== -->
