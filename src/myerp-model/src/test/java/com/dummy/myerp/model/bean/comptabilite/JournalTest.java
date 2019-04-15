@@ -32,7 +32,7 @@ public class JournalTest {
         */
         journalTest = JournalComptable.getByCode(testList, "bq");
         
-        Assert.assertTrue(journalTest.toString(), journalTest.getCode() == "bq" && journalTest.getLibelle().equals("banque"));
+        Assert.assertTrue(journalTest.toString(), "bq".equals(journalTest.getCode()) && journalTest.getLibelle().equals("banque"));
         
         
     }

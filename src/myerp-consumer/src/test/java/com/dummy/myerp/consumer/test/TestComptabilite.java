@@ -77,7 +77,7 @@ import java.util.GregorianCalendar;
                                             assertTrue("Vérification de la référence", testEcriture.getReference().equals("AC-2016/00001"));
                                             
                                             //Retourn False si la donnée contient un Libelle
-                                            assertFalse(testEcriture.getLibelle() == "");
+                                            assertFalse("".equals(testEcriture.getLibelle()));
                                             
                                             assertTrue("Nous allons vérifier que la liste à été chargée", testEcriture.getListLigneEcriture().size() == 3);
                                             
