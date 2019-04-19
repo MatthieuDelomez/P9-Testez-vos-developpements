@@ -138,15 +138,21 @@ Il comporte :
     
     
     
- ### Contact
-
+   # Contact
+ <ul>
+  <li>
     Site: <a title="Site" href="http://www.matthieudelomez.fr">
-    matthieudelomez.fr</a>
-
+     matthieudelomez.fr</a>
+  </li>
+  <li>
     Linkedin: <a title="Linkedin" href="https://www.linkedin.com/in/matthieu-delomez-8a46b9146/">
-    https://www.linkedin.com/in/matthieu-delomez</a>
-
+     https://www.linkedin.com/in/matthieu-delomez</a>
+  </li>
+  <li>
     Mail: <a title="mail" href="matthieu.delomez@gmail.com">
-    matthieu.delomez@gmail.com</a>
+     matthieu.delomez@gmail.com</a>
+  </li>
+  </ul>
+  <br>
 
   
