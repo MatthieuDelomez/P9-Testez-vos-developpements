@@ -49,11 +49,6 @@ Il comporte :
 
 
 ### [Docker]
-### Installation [Linux]
-
-    
-    
-
 ### Lancement
 
     Placer votre terminal dans le dossier ou ce trouve le fichier 'docker-compose.yml'
@@ -105,6 +100,49 @@ Il comporte :
     Dans l'onglet 'Configurer' de votre projet ajoutez la version de Maven
     Placez vous à l'aide du terminal dans : /usr/lib/jvm
     Effectuez la commande 'sudo apt-get install openjdk-8-jdk' pour que Jekins puisse compiler votre code
+    
+    
+### Sonar/SonarQube [Linux]
+
+    Télécharger le dossier .zip sur le site de Sonar
+    Dézippez le dossier Sonar 
+    Vérifiez que PostgreSql / MySQL est bien installé sur votre oridnateur
+    Créez une nouvelle base de données intitulée 'sonar' ainsi qu'un nouvel utilisateur 'sonar'
+    (Vérifiez que le nouvel utilisateur à bien les droits)
+    Editez le fichier sonar.properties situé dans: sonarqube/conf/sonar.properties
+    Dans 'DATABASE':
+    sonar.jdbc.username=sonar
+    sonar.jdbc.password=sonar
+    Allez au chemin suivant: sonarqube/bin/linux-x86-64
+    Executez la commande: ./sonar.sh start à chaque fois que vous voulez lancer l'analyse via SonarQube
+    Dashboard Sonar: http://localhost:9000 [username = admin | password = admin]
+    
+    *********************************************************************************************
+    
+    Installer SonarQube avec Jenkins:
+    
+    Une fois SonarQube installé sur votre machine, allez dans l'onglet 'Congurer Jenkins' et 'Configuration des Plugins'
+    Dans 'Disponible' télécharger le plugins SonarQube plugins
+    Une fois installé allez dans 'Configuration du Système' puis 'SonarQube Serveur'
+    Donnez lui l'Url suivante: http://localhost:9000/sonar
+    Sauvegardez puis allez dans 'Configuration Globale des Outils' et dans l'onglet 'SonarQube Scanner' installez de façon auto
+    Allez dans la configuration de votre projet et ajoutez le Build SonarQube Scanner et ajoutez le propriétés d'analyse suivante
+    
+    #Required metadata
+    sonar.projectKey=TestUnitaire-P9 
+    sonar.projectName=TestUnitaire-P9
+    sonar.projectVersion=1.0
+
+    sonar.language=java
+    sonar.java.binaries=**/target/classes
+
+    sonar.login=admin
+    sonar.password=admin
+
+    #Path to source directory
+    sonar.sources=/var/lib/jenkins/workspace/TestUnitaire-P9/src
+    
+    Le Build Maven ainsi que l'analyse via SonaQube Scanner est disponible
     
     
 ### Framework
