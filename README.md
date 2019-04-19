@@ -173,9 +173,21 @@ Il comporte :
     PostgreSQL latest
     PGAdmin III
     Image Docker
-    
-    
-    
+ 
+
+ ### Bugs corrigés
+
+    Dans la méthode: public BigDecimal getTotalCredit(){
+    getDebit doit être remplacé par getCredit
+    }
+
+    SqlContext: Manquement d'une virgule dans la requête Insert
+
+    Classpath du fichier BoostrapContext à modifier
+
+    Uncessary Boxxing to Integer dans la classe ResultHelper dans la méthode public static Long getLong
+ 
+
    # Contact
  <ul>
   <li>
