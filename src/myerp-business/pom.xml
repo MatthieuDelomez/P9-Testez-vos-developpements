@@ -111,13 +111,16 @@
     </dependencies>
 
 
-    <!-- =============================================================== -->
+   <!-- =============================================================== -->
     <!-- Profiles -->
     <!-- =============================================================== -->
     <profiles>
         <!-- Profile utilisé pour lancer les tests d'intégration de la couche Business -->
         <profile>
             <id>test-business</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <!-- Ajout du répertoire src/test-business/java en tant que source de test du module -->
@@ -150,6 +153,46 @@
                 </testResources>
             </build>
         </profile>
+    
+    <!-- Creation d'un profil de test d'intégration -->
+    
+    <profile>
+        <id>test-business-integration</id>
+        <build>
+            <plugins>
+            <!-- Ajout du répertoire src/test-myerptestbusinessbusiness/java en tant que source de test du module -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/test/java</source>
+                                <source>src/test-business/integration/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    </executions>
+                </plugin>    
+            </plugins>
+            
+            
+            <testResources>
+                <testResource>
+                    <directory>src/test/resources</directory>
+                </testResource>
+                <testResource>
+                    <directory>src/test-business/integration/resources</directory>
+                </testResource>
+            </testResources>
+        </build>
+    </profile>
     </profiles>
 
 
@@ -157,13 +200,13 @@
     <!-- Build -->
     <!-- =============================================================== -->
     <build>
+        
         <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
-      
-
-    </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+        </plugins>
+        
     </build>
 </project>

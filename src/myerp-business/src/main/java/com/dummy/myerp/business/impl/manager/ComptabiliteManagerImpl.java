@@ -99,7 +99,6 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
                                                                   (table sequence_ecriture_comptable)   
                                  **/
     
-    //*************************************** ===== METHODE A TESTER =====*****************************************
     
    @Override
     public synchronized void addReference(EcritureComptable pEcritureComptable) {
