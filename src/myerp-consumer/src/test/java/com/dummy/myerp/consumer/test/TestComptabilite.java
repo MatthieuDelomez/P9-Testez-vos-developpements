@@ -81,12 +81,12 @@ import java.util.GregorianCalendar;
                                             
                                             assertTrue("Nous allons vérifier que la liste à été chargée", testEcriture.getListLigneEcriture().size() == 3);
                                             
-                                           
+                                            }
                                             
                                             
                                             //Nous allons tester avec une écriture comptable qui n'existe pas
                                             //Exception attendue
-                                           
+                                           /*
                                             Id = 35;
                                             
                                             try {
@@ -161,7 +161,7 @@ import java.util.GregorianCalendar;
                                             
                                             /*
                                             Création de la methode qui va tester la requête Sql InsertEcriture 
-                                           */
+                                           
                                             @Test
                                             public void insertSqlEcritureTest() throws FunctionalException, NotFoundException{
                                                 
@@ -214,7 +214,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
@@ -267,7 +267,7 @@ import java.util.GregorianCalendar;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
@@ -298,7 +298,7 @@ import java.util.GregorianCalendar;
 
                                             /*
                                             Création de la méthode test qui va servir à vérifier l'écriture comptable en fonction de la référence
-                                            */
+                                            
                                             @Test
                                             public void getEcritureComptableByReferenceTest() {
 
@@ -346,7 +346,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode Test qui va tester l'écriture comptable en fonction de la date enregistrée en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void getLastSequenceTest() throws NotFoundException {
                                                 
@@ -405,7 +405,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            */
+                                            
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 
