@@ -161,7 +161,7 @@ import java.util.GregorianCalendar;
                                             
                                             /*
                                             Création de la methode qui va tester la requête Sql InsertEcriture 
-                                           
+                                           */
                                             @Test
                                             public void insertSqlEcritureTest() throws FunctionalException, NotFoundException{
                                                 
@@ -214,7 +214,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Création de la méthode test pour supprimer une écriture comptable en base de donnée
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void deleteSqlEcritureComptableTest() throws NotFoundException {
                                             
@@ -267,7 +267,7 @@ import java.util.GregorianCalendar;
                                             Test de la méthode update - Mise à jour de l'écriture comptable directement en base
                                             Mise à jour de la référence
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void updateSqlEcritureComptableTest() throws NotFoundException {
                                                 
@@ -324,7 +324,7 @@ import java.util.GregorianCalendar;
                                             }
                                             
                                             // Bloc qui va générée l'exception           
-                                            /*
+                                            
                                             try {
 
                                             dao.getEcritureComptableByRef(refNonEffective);
@@ -336,7 +336,7 @@ import java.util.GregorianCalendar;
 
                                            assertThat(exception.getMessage(), is("EcritureComptable non trouvée ! La référence : " + refNonEffective + "n'existe pas !!!"));
                                        
-                                            }  */                          
+                                            }                     
 
                                             }
                                             
@@ -381,7 +381,7 @@ import java.util.GregorianCalendar;
                                             
                                             //Bloc try / catch 
                                             //pour tester sur une séquence neuve Exception générée si le Calendar ne correspond pas à la base
-                                            /*
+                                            
                                             try {
                                                 
                                             derniereSequence = dao.getLastSequence(ecritureComptable);
@@ -394,7 +394,7 @@ import java.util.GregorianCalendar;
                                                     
 
                                             }
-                                            */
+                                            
                                             
                                             }
                                             
@@ -405,7 +405,7 @@ import java.util.GregorianCalendar;
                                             /*
                                             Méthode qui servira à ajouter une Sequence en base
                                             @throws NotFoundException
-                                            
+                                            */
                                             @Test
                                             public void insertSequenceTest() throws NotFoundException {
                                                 
