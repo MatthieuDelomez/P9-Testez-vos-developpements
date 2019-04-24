@@ -152,7 +152,7 @@ import java.util.GregorianCalendar;
                                             assertTrue("Test si le journal est bien existant", listeJournaux.stream().filter(o -> o.getCode().equals("AC")).findFirst().isPresent());
         
         
-                          }
+                                             }
                                             
                                                                                         
                                             
