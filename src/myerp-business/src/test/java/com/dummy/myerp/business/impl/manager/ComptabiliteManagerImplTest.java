@@ -230,7 +230,6 @@ public class ComptabiliteManagerImplTest {
                       //***********************************************************************************************************//
     
 
-                                          
         
                       /**
                       * Verifie qu'une exception est lancee si le code journal correspond pas a la ref
