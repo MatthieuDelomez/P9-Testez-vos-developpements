@@ -28,11 +28,16 @@ import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
 import org.mockito.Mockito;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 
 
 
 
 @RunWith(MockitoJUnitRunner.Silent.class)
+@ContextConfiguration(locations = {"/bootstrapContext.xml"})
+@ActiveProfiles(profiles = "test")
+
 public class ComptabiliteManagerImplTest {
     
     
@@ -77,7 +82,8 @@ public class ComptabiliteManagerImplTest {
                       @Test
                       public void checkEcritureComptableUnit() throws Exception {
                           
-                      EcritureComptable vEcritureComptable;
+                          
+                       EcritureComptable vEcritureComptable;
        
                       vEcritureComptable = new EcritureComptable();
         
@@ -92,12 +98,12 @@ public class ComptabiliteManagerImplTest {
                       vEcritureComptable.setLibelle("Libelle");
                       
         
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(-123),null));
+                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123),null));
         
                       vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(123)));
         
                       
-                      manager.checkEcritureComptableUnit(vEcritureComptable);
+                     manager.checkEcritureComptableUnit(vEcritureComptable);
    
                       }
                       
@@ -141,7 +147,7 @@ public class ComptabiliteManagerImplTest {
                       vEcritureComptable.setLibelle("Libelle");
         
                       
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(123),null));
+                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal(12300),null));
         
                       vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null,new BigDecimal(123)));
         
@@ -206,10 +212,15 @@ public class ComptabiliteManagerImplTest {
                       vEcritureComptable.setLibelle("Libelle");
         
                       
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1), null, new BigDecimal("-12"), null));
-        
-        
-                      vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2), null, null, new BigDecimal("12")));
+ vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
+                                                                                 null, new BigDecimal("-12"),
+                                                                                 null));
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(1),
+                null, new BigDecimal("15"),
+                null));
+        vEcritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(2),
+                                                                                 null, null,
+new BigDecimal("3")));
       
         
                       
