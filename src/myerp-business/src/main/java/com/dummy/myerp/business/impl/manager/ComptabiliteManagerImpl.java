@@ -254,7 +254,6 @@ public class ComptabiliteManagerImpl extends AbstractBusinessManager implements 
         
         
         
-        
 
         // ===== RG_Compta_2 : Pour qu'une écriture comptable soit valide, elle doit être équilibrée
         //Comme modification de la méthode isEquilibree en Integer ==> Ajout de la valeur  [!=0] 
