@@ -43,6 +43,10 @@
     <!-- =============================================================== -->
     <properties>
         
+        <sonar.coverage.exclusions>
+           myerp-technical/src/main/java/com/dummy/myerp/technical/**
+       </sonar.coverage.exclusions>
+        
        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
        <sonar.language>java</sonar.language>
         
