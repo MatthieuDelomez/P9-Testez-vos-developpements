@@ -27,16 +27,12 @@ import com.dummy.myerp.model.bean.comptabilite.JournalComptable;
 import com.dummy.myerp.model.bean.comptabilite.LigneEcritureComptable;
 import com.dummy.myerp.technical.exception.FunctionalException;
 import com.dummy.myerp.technical.exception.NotFoundException;
-import org.mockito.Mockito;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
+
 
 
 
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-@ContextConfiguration(locations = {"/bootstrapContext.xml"})
-@ActiveProfiles(profiles = "test")
 
 public class ComptabiliteManagerImplTest {
     
