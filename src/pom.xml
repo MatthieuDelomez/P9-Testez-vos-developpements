@@ -43,7 +43,6 @@
     <!-- =============================================================== -->
     <properties>
         
-        <sonar.host.url>http://localhost:9000/</sonar.host.url>
        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
        <sonar.language>java</sonar.language>
         
@@ -328,18 +327,14 @@
         <!-- =============================================================== -->
         <pluginManagement>
             <plugins>
-                <!--
+                
                 <plugin>
                        <groupId>org.jacoco</groupId>
                        <artifactId>jacoco-maven-plugin</artifactId>
                        <version>0.8.0</version>
                    </plugin>
-                   <plugin>
-                       <groupId>org.sonarsource.scanner.maven</groupId>
-                       <artifactId>sonar-maven-plugin</artifactId>
-                       <version>3.4.0.905</version>
-                   </plugin>
-                -->
+                   
+                
                 <!-- ===== Java compilation ===== -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
