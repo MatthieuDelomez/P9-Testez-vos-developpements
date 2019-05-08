@@ -38,6 +38,47 @@
     <!-- =============================================================== -->
     <properties>
     </properties>
+    
+        <!-- =============================================================== -->
+    <!-- Profiles -->
+    <!-- =============================================================== -->
+    <profiles>
+        <!-- Profile utilisé pour lancer les tests d'intégration de la couche Consumer -->
+        <profile>
+            <id>test-model</id>
+            <build>
+                <plugins>
+                    <!-- Ajout du répertoire src/test-consumer/java en tant que source de test du module -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>add-test-source</id>
+                                <phase>generate-test-sources</phase>
+                                <goals>
+                                    <goal>add-test-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>src/test-model/java</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test-model/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+    </profiles>
 
 
     <!-- =============================================================== -->
@@ -75,7 +116,6 @@
    <build>
         <plugins>
             
-            
              <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
@@ -100,6 +140,11 @@
               <artifactId>maven-surefire-plugin</artifactId>
               <version>2.22.1</version>
           </plugin>
+          
+          <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
             
             
           
