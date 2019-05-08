@@ -328,7 +328,7 @@
         <!-- =============================================================== -->
         <pluginManagement>
             <plugins>
-                
+                <!--
                 <plugin>
                        <groupId>org.jacoco</groupId>
                        <artifactId>jacoco-maven-plugin</artifactId>
@@ -339,7 +339,7 @@
                        <artifactId>sonar-maven-plugin</artifactId>
                        <version>3.4.0.905</version>
                    </plugin>
-                
+                -->
                 <!-- ===== Java compilation ===== -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
