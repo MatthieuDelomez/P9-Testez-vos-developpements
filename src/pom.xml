@@ -44,7 +44,8 @@
     <properties>
         
         <sonar.coverage.exclusions>
-           myerp-technical/src/main/java/com/dummy/myerp/technical/**
+          src/main/java/com/dummy/myerp/consumer/dao/impl/cache/CompteComptableDaoCache.java,
+          src/main/java/com/dummy/myerp/technical/**
        </sonar.coverage.exclusions>
         
        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
