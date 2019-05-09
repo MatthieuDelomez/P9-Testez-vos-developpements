@@ -83,7 +83,7 @@ import java.util.GregorianCalendar;
                                                 
                                             testEcriture = dao.getEcritureComptable(Id);
                                             
-                                            fail("Exception qui sera attendue, Car Id n°35 n'existe pas !");
+                                            fail("ATTENTION: Exception qui sera attendue, Car Id n°35 n'existe pas !");
                                             
                                             } catch (NotFoundException exception) {
                                                 
@@ -200,12 +200,12 @@ import java.util.GregorianCalendar;
 
                                             dao.getEcritureComptableByRef(refNonEffective);
 
-                                            fail("Exception attendue! ");
+                                            fail("ATTENTION: Exception attendue! ");
 
                                             } catch (NotFoundException exception) {
                                                 
 
-                                           assertThat(exception.getMessage(), is("EcritureComptable non trouvée ! La référence : " + refNonEffective + "n'existe pas !!!"));
+                                           assertThat(exception.getMessage(), is("ATTENTION: EcritureComptable non trouvée ! La référence : " + refNonEffective + "n'existe pas !!!"));
                                        
                                             }                     
 
@@ -255,11 +255,11 @@ import java.util.GregorianCalendar;
                                                 
                                             derniereSequence = dao.getLastSequence(ecritureComptable);
                                             
-                                            fail("Exception qui sera générée");
+                                            fail("ATTENTION: Exception qui sera générée");
                                             
                                             } catch (NotFoundException exception) {
                                                 
-                                            assertThat(exception.getMessage(), is("La séquence n'existe pas !"));
+                                            assertThat(exception.getMessage(), is(" ATTENTION: La séquence n'existe pas !"));
                                                     
 
                                             }
@@ -385,11 +385,11 @@ import java.util.GregorianCalendar;
                                                 
                                             testEcriture = dao.getEcritureComptable(Id);
                                             
-                                            fail("Exception attendue via NotFoundException");
+                                            fail("ATTENTION: Exception attendue via NotFoundException");
                                             
                                             } catch (NotFoundException exception) {
                                                 
-                                            assertThat(exception.getMessage(), is("L'écriture comptale n'a pas été trouvée ! [Normal elle vient d'être supp] Id = " + Id));
+                                            assertThat(exception.getMessage(), is("ATTENTION: L'écriture comptale n'a pas été trouvée ! [Normal elle vient d'être supp] Id = " + Id));
                                             
                                             }
                                             
@@ -439,7 +439,7 @@ import java.util.GregorianCalendar;
                                             
                                             assertTrue("Nous allons vérifier que la dernière sequence insérée est bien : ", derniereSequence.getDerniereValeur()== 42);
                                             
-                                            assertFalse("Nous retournons une exception si la dernière Sequence = ", derniereSequence.getAnnee() == 2016);
+                                            assertFalse("ATTENTION EXCEPTION ATTENDU: Nous retournons une exception si la dernière Sequence = ", derniereSequence.getAnnee() == 2016);
                                                 
                                             
                                             }

@@ -31,8 +31,13 @@ public class JournalTest {
         Méthode de test
         */
         journalTest = JournalComptable.getByCode(testList, "bq");
-        
         Assert.assertTrue(journalTest.toString(), "bq".equals(journalTest.getCode()) && journalTest.getLibelle().equals("banque"));
+        
+         journalTest = JournalComptable.getByCode(testList, "ach");
+        Assert.assertTrue(journalTest.toString(), "ach".equals(journalTest.getCode()) && journalTest.getLibelle().equals("client"));
+        
+         journalTest = JournalComptable.getByCode(testList, "vte");
+        Assert.assertTrue(journalTest.toString(), "vte".equals(journalTest.getCode()) && journalTest.getLibelle().equals("fournisseur"));
         
         
     }

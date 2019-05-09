@@ -34,6 +34,12 @@ public class CompteComptableTest {
         */
         compteTest = CompteComptable.getByNumero(testList, 512);
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("banque"));
+        
+        compteTest = CompteComptable.getByNumero(testList, 411);
+        Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 411 && compteTest.getLibelle().equals("client"));
+        
+        compteTest = CompteComptable.getByNumero(testList, 401);
+        Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 401 && compteTest.getLibelle().equals("fournisseur"));
     }
     
 }
