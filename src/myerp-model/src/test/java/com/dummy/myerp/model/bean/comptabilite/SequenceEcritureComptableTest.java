@@ -14,7 +14,7 @@ public class SequenceEcritureComptableTest {
         vSeq.setAnnee(2019);
         vSeq.setDerniereValeur(1);
 
-        Assert.assertEquals(vSeq.toString(),  "SequenceEcritureComptable" +  "{annee=2018, derniereValeur=1}");
+        Assert.assertEquals(vSeq.toString(),  "SequenceEcritureComptable" +  "{annee=2019, derniereValeur=1}");
         
     }
 }
