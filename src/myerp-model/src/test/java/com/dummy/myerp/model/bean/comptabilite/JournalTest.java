@@ -32,18 +32,15 @@ public class JournalTest {
         */
         journalTest = JournalComptable.getByCode(testList, "bq");
         Assert.assertTrue(journalTest.toString(), "bq".equals(journalTest.getCode()) && journalTest.getLibelle().equals("banque"));
-        Assert.assertFalse(journalTest.toString(), "bq".equals(journalTest.getCode()) && journalTest.getLibelle().equals("client"));
-        Assert.assertFalse(journalTest.toString(), "bq".equals(journalTest.getCode()) && journalTest.getLibelle().equals("fournisseur"));
+
         
          journalTest = JournalComptable.getByCode(testList, "ach");
         Assert.assertTrue(journalTest.toString(), "ach".equals(journalTest.getCode()) && journalTest.getLibelle().equals("client"));
-        Assert.assertFalse(journalTest.toString(), "ach".equals(journalTest.getCode()) && journalTest.getLibelle().equals("banque"));
-        Assert.assertFalse(journalTest.toString(), "ach".equals(journalTest.getCode()) && journalTest.getLibelle().equals("fournisseur"));
+
         
          journalTest = JournalComptable.getByCode(testList, "vte");
         Assert.assertTrue(journalTest.toString(), "vte".equals(journalTest.getCode()) && journalTest.getLibelle().equals("fournisseur"));
-        Assert.assertFalse(journalTest.toString(), "vte".equals(journalTest.getCode()) && journalTest.getLibelle().equals("client"));
-        Assert.assertFalse(journalTest.toString(), "vte".equals(journalTest.getCode()) && journalTest.getLibelle().equals("banque"));
+
         
         
     }
