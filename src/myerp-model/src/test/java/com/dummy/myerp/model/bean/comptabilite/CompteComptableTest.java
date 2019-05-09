@@ -34,12 +34,18 @@ public class CompteComptableTest {
         */
         compteTest = CompteComptable.getByNumero(testList, 512);
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("banque"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("client"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("fournisseur"));
         
         compteTest = CompteComptable.getByNumero(testList, 411);
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 411 && compteTest.getLibelle().equals("client"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 411 && compteTest.getLibelle().equals("banque"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 411 && compteTest.getLibelle().equals("fournisseur"));
         
         compteTest = CompteComptable.getByNumero(testList, 401);
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 401 && compteTest.getLibelle().equals("fournisseur"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 401 && compteTest.getLibelle().equals("client"));
+        Assert.assertFalse(compteTest.toString(), compteTest.getNumero() == 401 && compteTest.getLibelle().equals("banque"));
     }
     
 }

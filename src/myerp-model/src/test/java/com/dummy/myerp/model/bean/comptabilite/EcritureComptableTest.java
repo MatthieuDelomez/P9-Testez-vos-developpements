@@ -44,6 +44,7 @@ public class EcritureComptableTest {
         Assert.assertTrue(vEcriture.toString(), vEcriture.isEquilibree());
         
         
+        
         vEcriture.getListLigneEcriture().clear();
         
         vEcriture.setLibelle("L'écriture n'est pas équilibrée");

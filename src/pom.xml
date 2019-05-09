@@ -44,9 +44,7 @@
     <properties>
         
         <sonar.coverage.exclusions>
-            
-            myerp-consumer/src/main/java/com/dummy/myerp/consumer/db/helper/ResultSetHelper.java,
-            
+                        
            myerp-technical/src/main/java/com/dummy/myerp/technical/**
 
         </sonar.coverage.exclusions>
