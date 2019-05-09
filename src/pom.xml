@@ -44,13 +44,8 @@
     <properties>
         
         <sonar.coverage.exclusions>
-            
            myerp-technical/src/main/java/com/dummy/myerp/technical/**
-            
-          <!-- =============================================================== -->
-          
-          myerp-consumer/src/main/java/com/dummy/myerp/consumer/db/helper/ResultSetHelper.java
-            
+        <!--    myerp-consumer/src/main/java/com/dummy -->
        </sonar.coverage.exclusions>
         
        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
