@@ -41,8 +41,17 @@ public class JournalTest {
          journalTest = JournalComptable.getByCode(testList, "vte");
         Assert.assertTrue(journalTest.toString(), "vte".equals(journalTest.getCode()) && journalTest.getLibelle().equals("fournisseur"));
 
+        //*******************************************************************************************************
         
+        JournalComptable journal = new JournalComptable();
+        journal.setCode("RTY");
+        journal.setLibelle("libelle");
+
+        Assert.assertEquals(journal.toString(), "JournalComptable" + "{code='RTY', libelle='libelle'}");
         
     }
+    
+    
+    
     
 }

@@ -35,8 +35,16 @@ public class CompteComptableTest {
         compteTest = CompteComptable.getByNumero(testList, 512);
         Assert.assertTrue(compteTest.toString(), compteTest.getNumero() == 512 && compteTest.getLibelle().equals("banque"));
 
+        //*****************************************************************************************//
         
+       CompteComptable vCompte = new CompteComptable();
+       
+       vCompte.setLibelle("libelle");
+       
+       vCompte.setNumero(123);
 
+
+        Assert.assertEquals(vCompte.toString(), "CompteComptable" + "{numero=123, libelle='libelle'}");
 
     }
     
