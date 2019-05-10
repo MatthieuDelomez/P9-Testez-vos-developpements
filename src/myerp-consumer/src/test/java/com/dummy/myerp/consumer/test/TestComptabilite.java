@@ -281,7 +281,6 @@ import java.util.GregorianCalendar;
                                                 
                                             EcritureComptable ecritureComptable;
                                             
-                                          
                                             
                                             //Création d'une variable écriture comptable
                                             ecritureComptable = new EcritureComptable();
@@ -340,10 +339,13 @@ import java.util.GregorianCalendar;
                                             // Nous définissions la nouvelle référence
                                             testEcritureUpdate.setReference("AB-2019/00001");
                                             
+                                            //Invocation de la méthode update
                                             dao.updateEcritureComptable(testEcritureUpdate);
                                             
+                                            //Méthode insérer dans la méthode testEcritureToMaj
                                             EcritureComptable testEcritureToMAJ;
                                             
+                                            //Définition de la nouvelle ref
                                             testEcritureToMAJ = dao.getEcritureComptableByRef("AB-2019/00001");
                                             
                                             
