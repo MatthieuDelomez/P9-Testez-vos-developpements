@@ -269,7 +269,6 @@ import java.util.GregorianCalendar;
                                             
                                                                                         
                                             
-                                            
                                             //************************************************************************************************************/
                                             
                                             /*
@@ -300,7 +299,6 @@ import java.util.GregorianCalendar;
                                             //On set le libelle
                                             ecritureComptable.setLibelle("Libelle");
                                             
-                                            // 401 = Fournisseur | 512 = Banque
                                             ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(401), null, new BigDecimal("35"), null));
                                             
                                             ecritureComptable.getListLigneEcriture().add(new LigneEcritureComptable(new CompteComptable(512), null, null, new BigDecimal("35")));
